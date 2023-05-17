@@ -1,6 +1,6 @@
-import './App.css';
+import './Footer.css';
 
-function App() {
+function Footer() {
   return (
   <>
 
@@ -12,4 +12,4 @@ function App() {
   );
 }
 
-export default App;
+export default Footer;

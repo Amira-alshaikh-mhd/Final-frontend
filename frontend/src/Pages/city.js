@@ -1,6 +1,6 @@
-import './App.css';
+import './city.css';
 
-function App() {
+function City() {
   return (
   <>
 
@@ -12,4 +12,4 @@ function App() {
   );
 }
 
-export default App;
+export default City;

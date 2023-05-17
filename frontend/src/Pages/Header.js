@@ -1,10 +1,11 @@
-import './App.css';
+import './Header.css';
 
-function App() {
+function Header() {
   return (
   <>
-
-
+<nav class="navbar" >
+   Navbar content 
+</nav>
 
 
 
@@ -12,4 +13,4 @@ function App() {
   );
 }
 
-export default App;
+export default Header;

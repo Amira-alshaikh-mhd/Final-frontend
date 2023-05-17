@@ -1,10 +1,10 @@
-import './App.css';
+import './country.css';
 
-function App() {
+function Country() {
   return (
   <>
 
-
+aa
 
 
 
@@ -12,4 +12,4 @@ function App() {
   );
 }
 
-export default App;
+export default Country;

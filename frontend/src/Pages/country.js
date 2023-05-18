@@ -1,193 +1,126 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
-import axios from 'axios';
-import Carousel from 'react-bootstrap/Carousel';
-import './country.css'
+import axios from "axios";
+import "./country.css";
 
 const Country = () => {
   const [cities, setCities] = useState([]);
-  const [name, setName] = useState();
-  // const [country_id, setCountry_id] = useState();
-  // const country = country_id.name;
-
-  const { countryName } = useParams()
+  const [restaurants, setRestaurants] = useState([]);
+  const [place, setPlace] = useState([]);
 
 
-  console.log(countryName, 'im country name')
+  const { countryName } = useParams();
 
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
+  // console.log(countryName, "im country name");
 
   useEffect(() => {
     const fetchCities = async () => {
-      // const res = await axios.get(`http://localhost:5000/city/citiesbyCountry/${category_id}`);
-      // setCities(res.data);
-      // console.log (res.data)
-
-
-    
-      try { 
-        const res = await axios.get(`http://localhost:5000/country/${countryName}`);
-        console.log(res.data, 'im ress')
+      try {
+        const res = await axios.get(
+          `http://localhost:5000/country/${countryName}`
+        );
+        // console.log(res.data, "im ress");
         const name = res.data.name;
-        console.log(name)
-        const response = await axios.get(`http://localhost:5000/city/citiesbyCountryName/${name}`);
-        
-        setCities(response.data); 
-        console.log(response)
+        // console.log(name);
+        const response = await axios.get(
+          `http://localhost:5000/city/citiesbyCountryName/${name}`
+        );
+
+        setCities(response.data);
+        // console.log(response);
       } catch (error) {
         console.error(error);
       }
     };
+    const fetchRestaurants = async () => {
+      try {
+        
+          const response = await axios.get(`http://localhost:5000/place/placesbyCountry/${countryName}`); 
+          const {data} = response
+          setRestaurants(data)
 
+          const restaurants = data.filter((place) => place.typeId && place.typeId.name === "Restaurants");
+
+          setRestaurants(restaurants);
+
+          
+          // const filteredData = data.filter(obj => obj.typeId === "6464d8ff98ace34ef4eb6520");
+          //  console.log(filteredData)
+          // setRestaurants(filteredData)
+      
+      } catch (error) {
+        console.error(error);
+      }
+    };
     fetchCities();
-  }, []);
+  fetchRestaurants();  
+  }, [countryName]);
+  
+ 
+
+console.log(restaurants, 'im res')
+
+
+
 
   return (
-
-
     <div className="city-container">
-  {cities.map((city) => (
-    <div className="city-card" key={city._id}>
-      <img src={city.image.url} alt={city.name} />
-      <h3>{city.name}</h3>
-      <p>{city.description}</p>
+      {/* {cities.map((city) => (
+        <div className="city-card" key={city._id}>
+          <img src={city.image.url} alt={city.name} />
+          <h3>{city.name}</h3>
+          <p>{city.description}</p>
+        </div>
+      ))} */}
+
+
+
+<div className="country-container">
+      <h1>{countryName.name}</h1>
+      <div className="city-container">
+        {cities.map((city) => (
+          <div className="city-card" key={city._id}>
+            <img src={city.image.url} alt={city.name} />
+            <h3>{city.name}</h3>
+            <p>{city.description}</p>
+          </div>
+        ))}
+      </div>
+      <div className="restaurant-container">
+        <h2>Restaurants</h2>
+        {restaurants.map((restaurant) => (
+          <div className="restaurant-card" key={restaurant._id}>
+            <img src={restaurant.image.url} alt={restaurant.name} />
+            <h3>{restaurant.name}</h3>
+            <p>{restaurant.Description}</p>
+          </div>
+        ))}
+      </div>
     </div>
-  ))}
-</div>
 
 
 
-  //   <div>
-  //   <Carousel>
-  //     {cities.map((city) => (
-  //       <Carousel.Item key={city._id}>
-  //         <img src={city.image.url} alt={city.name} />
-  //         <Carousel.Caption>
-  //           <h3>{city.name}</h3>
-  //         </Carousel.Caption>
-  //       </Carousel.Item>
-  //     ))}
-  //   </Carousel>
-  // </div>
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   );
 };
 
 export default Country;
-
-
-
-
-// import React, { useState } from 'react';
-// import axios from 'axios';
-
-// import axios from 'axios';
-// import {  useParams } from 'react-router-dom';
-
-
-
- 
-
-
-// const Country = () => {
-
-//   const [cities, setCities] = useState([]);
-//   // const [country, setCountry] = useState();
-//   const  country  = useParams();
-
-
-//   // const countryName = useParams
-
-
-//   useEffect(() => {
-
-//   const fetchCitiesByCountry = async () => {
-//     try {
-    
-//       const response = await axios.get(`http://localhost:5000/city/citiesbyCountryName/${country.name}`);
-//       console.log(response)
-//       const cities = response.data;
-//       setCities(cities)
-//       console.log(cities)
-//       // Do something with the cities data
-  
-//     } catch (error) {
-//       console.error(error);
-//     }
-//   };
-//   fetchCitiesByCountry();
-// }, [country]);
-
-
-
-
-
-
-
-// useEffect(() => {
-
-//   const fetchCities = async () => {
-//     try {
-    
-//       const response = await axios.get(`http://localhost:5000/city`);
-//       console.log(response)
-//       const cities = response.data;
-//       setCities(cities)
-//       console.log(cities)
-//       // Do something with the cities data
-  
-//     } catch (error) {
-//       console.error(error);
-//     }
-//   };
-//   fetchCities();
-// }, [country]);
-
-
-
-
-
-//   return (
-//     <div className="city-container">
-//       {cities.map((city) => (
-//         <div className="city-card" key={city._id}>
-//           <img src={city.image.url} alt={city.name} />
-//           <h3>{city.name}</h3>
-//           <p>{city.description}</p>
-//         </div>
-//       ))}
-//     </div>
-//   );
-// };
-
-// export default Country;
-
-
-
-
-

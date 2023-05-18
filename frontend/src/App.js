@@ -9,6 +9,7 @@ import Signup from './Pages/signup';
 import SignInPage from './Pages/signin';
 import Home from './Pages/Home';
 import CreateAdminForm from './Pages/Dashbourd';
+import Footer from './Pages/Footer';
 
 function App() {
  
@@ -24,6 +25,7 @@ function App() {
         <Route path='Signup' element={<Signup />} />
         <Route path='Signin' element={<SignInPage />} />
         <Route path='dash' element={<CreateAdminForm />} />
+        <Route path='footer' element={<Footer />} />
       
 
       

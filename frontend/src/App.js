@@ -8,6 +8,7 @@ import City from './Pages/city';
 import Signup from './Pages/signup';
 import SignInPage from './Pages/signin';
 import Home from './Pages/Home';
+import CreateAdminForm from './Pages/Dashbourd';
 
 function App() {
  
@@ -18,10 +19,12 @@ function App() {
       
    
         <Route path='/' element={<Home />} />
-        <Route path='/country' element={<Country />}/>
+        <Route path='/country/:countryName' element={<Country />}/>
         <Route path='/city' element={<City />} />
         <Route path='Signup' element={<Signup />} />
         <Route path='Signin' element={<SignInPage />} />
+        <Route path='dash' element={<CreateAdminForm />} />
+      
 
       
       

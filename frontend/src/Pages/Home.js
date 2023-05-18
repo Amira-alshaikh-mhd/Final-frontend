@@ -1,6 +1,5 @@
 import "./Home.css";
 import logo from "../images/logo.png";
-import coun1 from "../images/t5.jpeg";
 import { Link } from "react-router-dom";
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -8,6 +7,37 @@ import axios from 'axios';
 
 
 function Home() {
+
+
+  const [images, setImages] = useState([]);
+
+  useEffect(() => {
+    const fetchImages = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/review');
+        const imageUrls = response.data.map((review) => review.image[0].url);
+        setImages(imageUrls);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchImages();
+  }, []);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 const [countries, setCountries] = useState([]);
@@ -35,7 +65,7 @@ useEffect(() => {
             <Link to="/home" className="link-item">
               Home
             </Link>
-            <Link to="/contact" className="link-item">
+            <Link to="/contact/" className="link-item">
               Contact us
             </Link>
             <Link to="/signin" className="link-item">
@@ -104,34 +134,13 @@ useEffect(() => {
 
 
       <div className="galery-container">
-      <p> Our Clients Gallery</p>
+      <p>Our Clients Gallery</p>
       <div className="galery">
-        <img src={coun1} alt="galery" className="galery-item"></img>
-        <img src={coun1} alt="galery" className="galery-item"></img>
-        <img src={coun1} alt="galery" className="galery-item"></img>
-        <img src={coun1} alt="galery" className="galery-item"></img>
-        <img src={coun1} alt="galery" className="galery-item"></img>
-        <img src={coun1} alt="galery" className="galery-item"></img>
-        <img src={coun1} alt="galery" className="galery-item"></img>
-        <img src={coun1} alt="galery" className="galery-item"></img>
-        <img src={coun1} alt="galery" className="galery-item"></img>
-        <img src={coun1} alt="galery" className="galery-item"></img>
-        <img src={coun1} alt="galery" className="galery-item"></img>
-        <img src={coun1} alt="galery" className="galery-item"></img>
-        <img src={coun1} alt="galery" className="galery-item"></img>
-        <img src={coun1} alt="galery" className="galery-item"></img>
-        <img src={coun1} alt="galery" className="galery-item"></img>
-        <img src={coun1} alt="galery" className="galery-item"></img>
-        <img src={coun1} alt="galery" className="galery-item"></img>
-        <img src={coun1} alt="galery" className="galery-item"></img>
-        <img src={coun1} alt="galery" className="galery-item"></img>
-        <img src={coun1} alt="galery" className="galery-item"></img>
-        <img src={coun1} alt="galery" className="galery-item"></img>
-        <img src={coun1} alt="galery" className="galery-item"></img>
-       
-
+        {images.map((imageUrl, index) => (
+          <img key={index} src={imageUrl} alt="galery" className="galery-item" />
+        ))}
       </div>
-      </div>
+    </div>
     </div>
   );
 }

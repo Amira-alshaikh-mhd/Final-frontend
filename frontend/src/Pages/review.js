@@ -159,17 +159,7 @@ const ReviewForm = () => {
           <label htmlFor="rating">Rating:</label>
           <div className="stars-container">{renderStars()}</div>
         </div>
-        {/* <div>
-          <label htmlFor="rating">Rating:</label>
-          <select id="rating" value={rating} onChange={handleRatingChange} required>
-            <option value={0}>Select a rating</option>
-            <option value={1}>1 Star</option>
-            <option value={2}>2 Stars</option>
-            <option value={3}>3 Stars</option>
-            <option value={4}>4 Stars</option>
-            <option value={5}>5 Stars</option>
-          </select>
-        </div> */}
+   
         <div>
   <label htmlFor="images">Images:</label>
   <input type="file" id="images" name="file" onChange={handleImage} multiple />
@@ -179,11 +169,7 @@ const ReviewForm = () => {
     <img key={index} src={URL.createObjectURL(image)} alt={`Image ${index}`} style={{ width: "100px", height: "100px" }} />
   ))}
 </div>
-  {/* <div>
-    {images.map((image, index) => (
-      <img key={index} src={image} alt={`Image ${index}`} style={{ width: "100px", height: "100px" }} />
-    ))}
-  </div> */}
+ 
 </div>
         <div>
             <input type='text' value={userId} onChange={(e) => { setUserId(e.target.value)
@@ -195,7 +181,7 @@ const ReviewForm = () => {
       </form>
 
 
-      <h2>List of Reviews:</h2>
+      {/* <h2>List of Reviews:</h2>
 {reviews.map((review) => (
   <div key={review.id}>
     <p>Comment: {review.comment}</p>
@@ -208,19 +194,10 @@ const ReviewForm = () => {
                 />
               )}
 
-    <div>
-      {/* {reviews.images.map((image, index) => (
-        <img
-          key={index}
-          src={image}
-          alt={`Image ${index}`}
-          style={{ width: '100px', height: '100px' }}
-        />
-      ))} */}
-    </div>
+  
     <hr />
   </div>
-))}
+))} */}
 
 
     </div>

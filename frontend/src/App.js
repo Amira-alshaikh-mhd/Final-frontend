@@ -12,6 +12,7 @@ import CreateAdminForm from './Pages/Dashbourd';
 import Footer from './Pages/Footer';
 import Review from './Pages/review';
 import BookingComponent from './Pages/booking';
+import Host from './Pages/hosts';
 
 function App() {
  
@@ -30,7 +31,8 @@ function App() {
         <Route path='footer' element={<Footer />} />
         <Route path='review' element={<Review />} />
         <Route path='booking' element={<BookingComponent />} />
-      
+        <Route path='host' element={<Host />} />
+
 
       
       

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import '../Pages/booking.css'
 
 const BookingComponent = () => {
   const [books, setBooks] = useState([]);
@@ -41,9 +42,11 @@ const BookingComponent = () => {
   };
 
   return (
-    <div>
-      <h1>Booking Form</h1>
-      <form onSubmit={handleSubmit}>
+   
+  
+    <div className="bookingFormContainer">
+      <h1 className="bookingFormTitle">Booking Form</h1>
+      <form className="bookingForm" onSubmit={handleSubmit}>
         <label htmlFor="startDate">Start Date:</label>
         <input
           type="date"
@@ -91,17 +94,6 @@ const BookingComponent = () => {
         <br />
         <button type="submit">Book</button>
       </form>
-      <h2>List of Books:</h2>
-      {books.map((book) => (
-        <div key={book._id}>
-          <p>Start Date: {book.startDate}</p>
-          <p>End Date: {book.endDate}</p>
-          <p>Number: {book.number}</p>
-          <p>Host ID: {book.hostId}</p>
-          <p>User ID: {book.userId}</p>
-          <hr />
-        </div>
-      ))}
     </div>
   );
 };

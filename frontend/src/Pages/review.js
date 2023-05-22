@@ -96,9 +96,9 @@ const ReviewForm = () => {
       console.error(error);
       // Handle error or show error notification
     }
-    //  finally {
-    //   setIsLoading(false);
-    // }
+     finally {
+      setIsLoading(false);
+    }
 
 
 };

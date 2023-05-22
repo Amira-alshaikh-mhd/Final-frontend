@@ -10,6 +10,8 @@ import SignInPage from './Pages/signin';
 import Home from './Pages/Home';
 import CreateAdminForm from './Pages/Dashbourd';
 import Footer from './Pages/Footer';
+import Review from './Pages/review';
+import BookingComponent from './Pages/booking';
 
 function App() {
  
@@ -21,11 +23,13 @@ function App() {
    
         <Route path='/' element={<Home />} />
         <Route path='/country/:countryName' element={<Country />}/>
-        <Route path='/city' element={<City />} />
+        <Route path='/city/:cityId' element={<City />} />
         <Route path='Signup' element={<Signup />} />
         <Route path='Signin' element={<SignInPage />} />
         <Route path='dash' element={<CreateAdminForm />} />
         <Route path='footer' element={<Footer />} />
+        <Route path='review' element={<Review />} />
+        <Route path='booking' element={<BookingComponent />} />
       
 
       

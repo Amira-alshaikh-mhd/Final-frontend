@@ -87,4 +87,16 @@
   .modal-form button:hover {
     background-color: #0069d9;
   }
+   .country-edit{
+    margin-right: 1rem;
+
+  } 
+
+
+  .country-name{
+    margin-right: auto;
+  }
+  .create-admin-btn{
+    margin: 1rem;
+  }
   

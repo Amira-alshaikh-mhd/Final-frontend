@@ -15,7 +15,7 @@ function Footer() {
       try {
         const response = await axios.get(`http://localhost:5000/place`);
         const { data } = response;
-
+         console.log(response)
         const imageArrays = data.map((array) => array.image);
         const arrr = imageArrays.filter(arr => arr.length > 0);
         const newArray = arrr.map(arr => arr[0]);
@@ -28,9 +28,9 @@ function Footer() {
 
         setRestaurants(restaurants);
 
-        const filteredData = data.filter(obj => obj.typeId === "6464d8ff98ace34ef4eb6520");
-        console.log(filteredData);
-        setRestaurants(filteredData);
+        // const filteredData = data.filter(obj => obj.typeId === "6464d8ff98ace34ef4eb6520");
+        // console.log(filteredData);
+        // setRestaurants(filteredData);
       } catch (error) {
         console.error(error);
       }

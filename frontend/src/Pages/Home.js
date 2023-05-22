@@ -1,5 +1,6 @@
 import "./Home.css";
 import logo from "../images/logo.png";
+import img1 from '../images/h11.jpg'
 import { Link } from "react-router-dom";
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -9,21 +10,19 @@ import axios from 'axios';
 function Home() {
 
 
-  const [images, setImages] = useState([]);
+  const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
-    const fetchImages = async () => {
-      try {
-        const response = await axios.get('http://localhost:5000/review');
-        const imageUrls = response.data.map((review) => review.image[0].url);
-        setImages(imageUrls);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    fetchImages();
-  }, []);
+      const fetchReviews = async () => {
+        try {
+          const response = await axios.get('http://localhost:5000/review');
+          setReviews(response.data);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+      fetchReviews();
+    }, [])
 
 
 
@@ -100,47 +99,55 @@ useEffect(() => {
 
 
 
-
       <div className="all-countries">
-        <p className="home-countries">Start your vacation</p>
+      <p className="home-countries">Start your vacation</p>
 
-
-
-
-
-
-
-<div className="country-flex">
-{countries.map((country) => (
-  <div key={country._id}>
-    <img src={country.image.url} alt={country.name} className="country-image" />
-    <p>
-      <Link to={`/country/${country._id}`} className="country-item">
-        {country.name}
-      </Link>
-    </p>
-  </div>
-))}
-</div>
-
-
-
-
-      </div>
-
-
-
-
-
-
-      <div className="galery-container">
-      <p>Our Clients Gallery</p>
-      <div className="galery">
-        {images.map((imageUrl, index) => (
-          <img key={index} src={imageUrl} alt="galery" className="galery-item" />
+      <div className="country-flex">
+        {countries.map((country) => (
+          <div key={country._id} className="country-item-container">
+            <img src={country.image.url} alt={country.name} className="country-image" />
+            <Link to={`/country/${country._id}`} className="country-item">
+              {country.name}
+            </Link>
+          </div>
         ))}
       </div>
     </div>
+
+    <div className="gallery-container">
+      <p>Our Clients Gallery</p>
+      {reviews.map((review) => (
+        <div key={review.id} className="review-item">
+          {review.image.length > 0 && (
+            <img src={review.image[0].url} alt={review.name} className="review-image" />
+          )}
+          <hr />
+        </div>
+      ))}
+    </div>
+
+
+    <div className="articles-container">
+        <h2>Featured Articles</h2>
+        <div className="article-item">
+          <img src={img1} alt="Article 1" className="article-image" />
+          <div className="article-content">
+            <h3>Article 1 Title</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum sodales tristique tincidunt.</p>
+            <Link to="/articles/1" className="article-link">Read More</Link>
+          </div>
+        </div>
+        <div className="article-item">
+          <img src={img1} alt="Article 2" className="article-image" />
+          <div className="article-content">
+            <h3>Article 2 Title</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum sodales tristique tincidunt.</p>
+            <Link to="/articles/2" className="article-link">Read More</Link>
+          </div>
+          </div>
+          </div>
+
+
     </div>
   );
 }

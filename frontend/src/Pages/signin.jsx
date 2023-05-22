@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-
+import '../Pages/signin.css'
 import { useNavigate } from "react-router-dom"
 import { toast, ToastContainer } from 'react-toastify';
+import signInImage from '../images/logo.png'
+import { Link } from "react-router-dom";
+
 
 
 
@@ -67,29 +70,43 @@ const SignInPage = () => {
   };
 
   return (
-    <div>
-      <h2>Sign In</h2>
-      {error && <p>{error}</p>}
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Email</label>
+    <div className="sign-in-container">
+    <div className="image-container">
+      <img src={signInImage} alt="Sign In" className="sign-in-image" />
+    </div>
+    <div className="form-container">
+      <h2 className='sign-title'>Sign In</h2>
+      {error && <p className="error-message">{error}</p>}
+      <form onSubmit={handleSubmit} >
+        <div className="form-group">
+          <label htmlFor="email">Email</label>
           <input
             type="email"
+            id="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
-        <div>
-          <label>Password</label>
+        <div className="form-group">
+          <label htmlFor="password">Password</label>
           <input
             type="password"
+            id="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <button type="submit">Sign In</button>
+        <button type="submit" className='signin-btn'>Sign in</button>
+        <div className='sign-div'>
+          <p className='reg-p'> If you don't have account </p>
+        <Link to="/signup" className=' sign-link'>Sign up</Link>
+      
+
+        
+        </div>
       </form>
     </div>
+  </div>
   );
 };
 

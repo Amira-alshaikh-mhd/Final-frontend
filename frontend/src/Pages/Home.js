@@ -17,6 +17,7 @@ function Home() {
         try {
           const response = await axios.get('http://localhost:5000/review');
           setReviews(response.data);
+          console.log(response.data, "tesssst")
         } catch (error) {
           console.log(error);
         }
@@ -116,15 +117,44 @@ useEffect(() => {
 
     <div className="gallery-container">
       <p>Our Clients Gallery</p>
+      <div>
       {reviews.map((review) => (
         <div key={review.id} className="review-item">
+          <div>
           {review.image.length > 0 && (
             <img src={review.image[0].url} alt={review.name} className="review-image" />
+            
           )}
+          </div>
+  
           <hr />
         </div>
       ))}
     </div>
+    </div>
+
+
+
+
+
+
+    <div className="reviews-container">
+  <h2 className="reviews-heading">Reviews</h2>
+  {reviews.map((review) => (
+    <div key={review.id} className="review-item">
+        {review.image.length > 0 && (
+            <img src={review.image[0].url} alt={review.name} className="review-image" />
+            
+          )}
+      <div className="review-header">
+        <p className="review-author">{review.userId.name}</p>
+        <p className="review-date">{review.createdAt}</p>
+      </div>
+      <p className="review-comment">{review.comment}</p>
+      <hr className="review-divider" />
+    </div>
+  ))}
+</div>
 
 
     <div className="articles-container">

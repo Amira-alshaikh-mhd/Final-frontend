@@ -16,6 +16,15 @@ const City = () => {
   const [place, setPlace] = useState([]);
   const [city, setCity] = useState([]);
   const [selectedType, setSelectedType] = useState(null);
+  const [restaurants, setRestaurants] = useState([]);
+  const [hotels, setHotels] = useState([]);
+
+
+
+
+
+
+
   
 
   const fetchTypes = async () => {
@@ -29,6 +38,60 @@ const City = () => {
   };
 
   const cityId = useParams();
+
+  useEffect(() => {
+  const fetchCity = async () => {
+    console.log(cityId)
+    try {
+      const response = await axios.get(`http://localhost:5000/city/${cityId.cityId}`); // Replace with your types API endpoint
+      const Data = response.data;
+      console.log(Data,'dataaaaaaaaa')
+      setCity(Data);
+    } catch (error) {
+      console.error('Failed to fetch types:', error.message);
+    }
+  };
+  fetchCity();
+}, []);
+
+
+useEffect(() => {
+  const fetchplace = async () => {
+    console.log(cityId, 'city id')
+    try {
+      const response = await axios.get(`http://localhost:5000/place/placesbyCity/${cityId.cityId}`); // Replace with your types API endpoint
+      const Data = response.data;
+      console.log(Data,'dooooooo')
+
+
+      setRestaurants(response.data);
+      setHotels(response.data);
+      // setPlace(Data);
+
+      const restaurant = Data.filter(
+        (place) => place.typeId && place.typeId.name === "Restaurants"
+      );
+
+      const hotel = Data.filter(
+        (place) => place.typeId && place.typeId.name === "Hotels"
+      );
+
+
+
+      setRestaurants(restaurant);
+      console.log(restaurant, 'restooooo')
+      setHotels(hotel);
+      // setPlace(Data);
+    } catch (error) {
+      console.error('Failed to fetch types:', error.message);
+    }
+  };
+  fetchplace();
+}, []);
+
+
+
+  
   const fetchPlacesByType = async (typeId) => {
     console.log(cityId);
     console.log(typeId);
@@ -46,6 +109,7 @@ const City = () => {
 
   useEffect(() => {
     fetchTypes();
+    fetchPlacesByType();
   }, []);
 
   const handleButtonClick = (typeId) => {
@@ -220,6 +284,14 @@ const City = () => {
 <div>
 <h1>City Component</h1>
 
+
+
+            <img src={city.image? city.image.url : null} alt={city.name} />
+{/* <img src={city.image.url} alt={city.name} className="country-image" /> */}
+<h3>{city.name}</h3>
+<h3>{city.Describtion}</h3>
+
+
 <div className="buttonContainer">
   {types.map((type) => {
     if (type.name !== 'Hotels' && type.name !== 'Restaurants') {
@@ -285,6 +357,50 @@ const City = () => {
           ))}
         </div>
 </div>
+
+
+<div className="restaurant-container">
+          <h2>Restaurants</h2>
+          {restaurants.map((restaurant) => (
+            <div className="restaurant-card" key={restaurant._id}>
+              {restaurant.image.length > 0 && (
+                <img
+                  src={restaurant.image[0].url}
+                  alt={restaurant.name}
+                  className="res-img"
+                />
+              )}
+
+              {/* <img src={restaurant.image.url} alt={restaurant.name} className="res-img"/> */}
+              <h3>{restaurant.name}</h3>
+              <p>{restaurant.Description}</p>
+              <p>{restaurant.Address}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="restaurant-container">
+          <h2>Hotels</h2>
+          {hotels.map((hotel) => (
+            <div className="restaurant-card" key={hotel._id}>
+              {hotel.image.length > 0 && (
+                <img
+                  src={hotel.image[0].url}
+                  alt={hotel.name}
+                  className="res-img"
+                />
+              )}
+
+              {/* <img src={restaurant.image.url} alt={restaurant.name} className="res-img"/> */}
+              <h3>{hotel.name}</h3>
+              <p>{hotel.Description}</p>
+              <p>{hotel.Address}</p>
+            </div>
+          ))}
+        </div>
+
+
+
 
 
 <div>

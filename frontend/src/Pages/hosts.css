@@ -1,4 +1,4 @@
-.user-list-section {
+/* .user-list-section {
     background-color: #f5f5f5;
     padding: 20px;
     border-radius: 8px;
@@ -38,4 +38,161 @@
     margin: 0;
     color: #333333;
   }
+   */
+
+
+
+   .section-heading {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
   
+  .host-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .host-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .host-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 20px;
+  }
+  
+  .host-details {
+    flex-grow: 1;
+  }
+  
+  .host-name {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .host-phone {
+    font-size: 16px;
+    color: #777777;
+    margin-bottom: 5px;
+  }
+  
+  .host-description {
+    font-size: 14px;
+    color: #777777;
+  }
+  
+  .review-author {
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .review-comment {
+    font-size: 14px;
+    color: #777777;
+    margin-top: 5px;
+  }
+  
+  .restaurant-card {
+    background-color: #f5f5f5;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+  
+  .booking-user {
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .booking-email,
+  .booking-phone {
+    font-size: 14px;
+    color: #777777;
+  }
+  
+  .booking-number {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333333;
+    margin-bottom: 5px;
+  }
+  
+  .booking-dates {
+    font-size: 14px;
+    color: #777777;
+  }
+  
+  .post-review-section {
+    margin-top: 40px;
+  }
+  
+  .form-label {
+    font-size: 16px;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .form-textarea,
+  .form-input {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 1px solid #dddddd;
+    margin-bottom: 10px;
+  }
+  
+  .form-file-input {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .image-preview {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .image-preview-item {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+  
+  .submit-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #333333;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .submit-button:disabled {
+    background-color: #999999;
+    cursor: not-allowed;
+  }
+  a{
+    text-decoration: none;
+    color: gray;
+  }
+
+  .active {
+  
+      color: yellow;
+    
+  }
+  a :hover {
+  
+    color: yellow;
+  
+}

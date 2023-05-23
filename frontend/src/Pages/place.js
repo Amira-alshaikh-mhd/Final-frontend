@@ -17,12 +17,51 @@ const Place = () => {
   const [comment, setComment] = useState('');
   const [rating, setRating] = useState(0);
   const [images, setImages] = useState([]);
+  const [review, setReview] = useState([]);
   const [userId, setUserId] = useState('6453793dbdd7f879fa978bf2');
   const [isLoading, setIsLoading] = useState(false);
+  const [place, setPlace] = useState([]);
 
   const placeId = useParams();
 
 
+  useEffect(() => {
+
+        const fetchPlace = async () => {
+          try {
+            const res = await axios.get(`http://localhost:5000/place/${placeId.placeId}`);
+            setPlace(res.data);
+            console.log(res.data);
+          } catch (error) {
+            console.error(error);
+            // Handle error state
+          }
+        };
+        fetchPlace(placeId);
+      }, [placeId]);
+
+
+
+
+
+      // get Rivew 
+      useEffect(() => {
+      const fetchReview = async () => {
+        try {
+          const response = await axios.get(
+            `http://localhost:5000/review/byplace/${placeId.placeId}`
+          );
+          const { data } = response;
+          setReview(data);
+        
+          console.log(data, "im res");
+
+        } catch (error) {
+          console.error(error);
+        }
+      };
+      fetchReview(placeId);
+    }, [placeId]);
 
 
 
@@ -136,6 +175,50 @@ const Place = () => {
 
 return(
     <>
+
+
+<div >
+        
+        
+          
+            <div key={place._id}>
+              <h3>{place.name}</h3>
+            <img src={place.image? place.image[0].url: null} alt={place.name} />
+
+              <p>{place.name}</p>  
+           
+           <p>{place.Description}</p> 
+            </div>
+          
+        
+      </div>
+      <div>
+      <div className="user-list-section">
+      {review.map((review) => (
+            <div className="restaurant-card" key={review._id}>
+              <p>{review.userId.name}</p>
+              <p className="review-date">
+        {new Date(review.createdAt).toLocaleDateString(undefined, {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+        })}
+      </p>
+
+              <p>{review.comment}</p>
+              {/* {place.image.length > 0 && (
+                <img
+                  src={place.image[1].url}
+                  alt={place.name}
+                  className="res-img"
+                />
+              )} */}
+            </div>
+          ))}
+      </div>
+      </div>
+
+
     
 <div>
       <h2>Post a Review</h2>

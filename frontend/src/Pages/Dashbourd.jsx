@@ -24,6 +24,10 @@ const AdminPage = () => {
 
 
 
+
+
+  // Host
+
   const handleCreateHost = async () => {
     try {
       const formData = new FormData();
@@ -54,6 +58,10 @@ const AdminPage = () => {
       console.error('Error creating host:', error);
     }
   };
+
+
+
+
 
 
   const [showHostForm, setShowHostForm] = useState(false);
@@ -88,11 +96,11 @@ const AdminPage = () => {
 
 
 
-
+//______________________________________________________________________________________________________
 
 
   
-
+// country
 
 
   const [countries, setCountries] = useState([]);
@@ -101,24 +109,10 @@ const AdminPage = () => {
   const [showCreateCountryModal, setShowCreateCountryModal] = useState(false);
   const [countryName, setCountryName] = useState('');
   const [countryImage, setCountryImage] = useState(null);
-  const [countryUserId, setCountryUserId] = useState('');
+  // const [countryUserId, setCountryUserId] = useState('');
 
 
   
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
 
 
   const handleEditCountry = (country) => {
@@ -154,7 +148,7 @@ const AdminPage = () => {
     // Prepare form data
     const formData = new FormData();
     formData.append('name', countryName);
-    formData.append('userId', countryUserId);
+    // formData.append('userId', countryUserId);
     formData.append('image', countryImage);
   
     try {
@@ -164,7 +158,7 @@ const AdminPage = () => {
         },
       });
   
-      console.log(response.data); // Handle the response as needed
+      console.log(response.data, "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"); // Handle the response as needed
   
       // Fetch updated country list after creating a new country
   
@@ -182,9 +176,9 @@ const AdminPage = () => {
     setCountryImage(event.target.files[0]);
   };
   
-  const handleCountryUserIdChange = (event) => {
-    setCountryUserId(event.target.value);
-  };
+  // const handleCountryUserIdChange = (event) => {
+  //   setCountryUserId(event.target.value);
+  // };
   
 
 
@@ -219,8 +213,213 @@ const AdminPage = () => {
 
 
 
+//_______________________________________________________________________________________________
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// city
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  const [cities, setCities] = useState([]);
+  const [selectedCity, setSelectedCity] = useState(null);
+  // const [selectedCountry, setSelectedCountry] = useState('');
+
+  
+  const [showCreateCityModal, setShowCreateCityModal] = useState(false);
+  const [cityName, setCityName] = useState('');
+  const [cityDescription, setCityDescription] = useState('');
+  const [cityImage, setCityImage] = useState(null);
+  const [cityCountry, setCityCountry] = useState('');
+
+
+  
+
+  // const handleCountryIdChange = (event) => {
+  //   const selectedId = event.target.value;
+  //   const selectedCountry = countries.find(country => country.id === selectedId);
+  //   setSelectedCountry(selectedCountry);
+  // };
+  
+
+
+  const handleEditCity = (city) => {
+    setSelectedCity(city);
+    setShowCreateCityModal(true);
+  };
+
+
+
+
+
+  
+   const handleDeleteCity = async (_id) => {
+
+    
+    try {
+      await axios.delete(`http://localhost:5000/city/${_id}`);
+      // fetchUserList(); // Refresh the user list after deleting a user
+    } catch (error) {
+      console.error(error);
+      // Handle error state
+    }
+  };
+  
+
+
+
+
+
+
+  
+  const handleCreateCity = async () => {
+    // Prepare form data
+    const formData = new FormData();
+    formData.append('name', cityName);
+    formData.append('Description', cityDescription);
+    formData.append('country', selectedCountry);
+    formData.append('image', cityImage);
+  
+    try {
+      const response = await axios.post('http://localhost:5000/city', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+  
+      console.log(response.data); // Handle the response as needed
+  
+      // Fetch updated country list after creating a new country
+  
+    } catch (error) {
+      console.error(error);
+      // Handle error state
+    }
+  };
+  
+  const handleCityNameChange = (event) => {
+    setCityName(event.target.value);
+  };
+
+  const handleCityDescriptionChange = (event) => {
+    setCityDescription(event.target.value);
+  };
+  
+  const handleCityImageChange = (event) => {
+    setCityImage(event.target.files[0]);
+  };
+
+
+
+  const handleCountryIdChange = (event) => {
+    const selectedId = event.target.value;
+    const selectedCountry = countries.find(country => country._id === selectedId);
+    setSelectedCountry(selectedCountry);
+  };
+  
+
+
+
+
+
+
+
+
+  useEffect(() => {
+    const fetchcities = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/city');
+        setCities(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+  
+    fetchcities();
+  }, []);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//______________________________________________________________________________________________
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// user
 
 
 
@@ -236,32 +435,8 @@ const AdminPage = () => {
   const [users, setUsers] = useState([]);
 
   
-    
-
-
+  
  
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
 
 
   useEffect(() => {
@@ -280,21 +455,6 @@ const AdminPage = () => {
   fetchUserList();
 
 }, []);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -361,6 +521,229 @@ const AdminPage = () => {
     setShowModal(false);
   };
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//______________________________________________________________________________
+
+
+
+// type
+
+
+
+
+
+
+const [types, setTypes] = useState([]);
+const [typeName, setTypeName] = useState('');
+
+useEffect(() => {
+  fetchTypes();
+}, []);
+
+const fetchTypes = async () => {
+  try {
+    const response = await axios.get('http://localhost:5000/type');
+    setTypes(response.data);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const handleCreateType = async () => {
+  try {
+    const response = await axios.post('http://localhost:5000/type', {
+      name: typeName,
+    });
+    console.log(response.data); // Handle the response as needed
+    setTypeName(''); // Clear the input field
+    fetchTypes(); // Fetch the updated types list
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const handleTypeNameChange = (event) => {
+  setTypeName(event.target.value);
+};
+
+const handleDeleteType = async (_id) => {
+  try {
+    await axios.delete(`http://localhost:5000/type/${_id}`);
+    fetchTypes();
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+
+  //_________________________________________________________________________________________________________
+
+
+
+
+
+  // place     
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  const [places, setPlaces] = useState([]);
+  // const [cities, setCities] = useState([]);
+  // const [types, setTypes] = useState([]);
+  const [placeData, setPlaceData] = useState({
+    name: '',
+    Description: '',
+    Address: '',
+    rating: '',
+    cityId: '',
+    typeId: '',
+    image: '',
+  });
+  const [selectedPlace, setSelectedPlace] = useState(null);
+
+  useEffect(() => {
+    // Fetch all places, cities, and types
+    fetchPlaces();
+  
+    fetchTypes();
+  }, []);
+
+  const fetchPlaces = async () => {
+    try {
+      const response = await axios.get('http://localhost:5000/place');
+      setPlaces(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const [images, setImages] = useState([]);
+  
+
+
+  function handleImage(e) {
+    const selectedFiles = e.target.files;
+    const newImages = [];
+  
+    for (let i = 0; i < selectedFiles.length; i++) {
+      const file = selectedFiles[i];
+  
+      // Check if the file is an image
+      if (file.type.startsWith("image/")) {
+        newImages.push(file);
+      }
+    }
+  
+    setImages(newImages);
+  }
+
+
+  const handleCreatePlace = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(`http://localhost:5000/place`, placeData);
+      console.log(response.data);
+      setPlaceData({
+        name: '',
+        Description: '',
+        Address: '',
+        rating: '',
+        cityId: '',
+        typeId: '',
+        image:'',
+      });
+      // Fetch all places again to update the list
+      fetchPlaces();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleDeletePlace = async (placeId) => {
+    try {
+      await axios.delete(`http://localhost:5000/place/${placeId}`);
+      // Fetch all places again to update the list
+      fetchPlaces();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleEditPlace = (place) => {
+    setSelectedPlace(place);
+    setPlaceData({
+      name: place.name,
+      Description: place.Description,
+      Address: place.Address,
+      rating: place.rating,
+      cityId: place.cityId,
+      typeId: place.typeId,
+    });
+  };
+
+  const handleUpdatePlace = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.put(`http://localhost:5000/place/${selectedPlace._id}`, placeData);
+      console.log(response.data);
+      setPlaceData({
+        name: '',
+        Description: '',
+        Address: '',
+        rating: '',
+        cityId: '',
+        typeId: '',
+      });
+      setSelectedPlace(null);
+      // Fetch all places again to update the list
+      fetchPlaces();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleInputChange = (e) => {
+    setPlaceData({ ...placeData, [e.target.name]: e.target.value },{ ...placeData, [e.target.Description]: e.target.value });
+  };
+
+
+
+
+
+
+
+
+
+
   return (
     <div className="admin-page">
     <div className="admin-section">
@@ -400,6 +783,16 @@ const AdminPage = () => {
 
 
 
+
+
+
+
+
+
+
+
+
+
 <Button onClick={() => setShowCreateCountryModal(true)}>Create Country</Button>
 
 <Modal show={showCreateCountryModal} onHide={() => setShowCreateCountryModal(false)}>
@@ -419,18 +812,82 @@ const AdminPage = () => {
         accept="image/*"
         onChange={handleCountryImageChange}
       />
-      <input
+      {/* <input
         type="text"
         placeholder="User ID"
         value={countryUserId}
         onChange={handleCountryUserIdChange}
-      />
+      /> */}
       <Button type="submit">Create</Button>
     </form>
   </Modal.Body>
 </Modal>
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<Button onClick={() => setShowCreateCityModal(true)}>Create City</Button>
+
+<Modal show={showCreateCityModal} onHide={() => setShowCreateCityModal(false)}>
+  <Modal.Header closeButton>
+    <Modal.Title>Create City</Modal.Title>
+  </Modal.Header>
+  <Modal.Body>
+    <form onSubmit={handleCreateCity}>
+      <input
+        type="text"
+        placeholder="City Name"
+        value={cityName}
+        onChange={handleCityNameChange}
+      />
+       <input
+        type="text"
+        placeholder="City Description"
+        value={cityDescription}
+        onChange={handleCityDescriptionChange}
+      />
+      <input
+        type="file"
+        accept="image/*"
+        onChange={handleCityImageChange}
+      />
+
+
+<select value={selectedCountry ? selectedCountry._id : ''} onChange={handleCountryIdChange}>
+  <option value="">Select Country</option>
+  {countries.map(country => (
+    <option key={country._id} value={country._id}>
+      {country.name}
+    </option>
+  ))}
+</select>
+
+<input
+  type="text"
+  placeholder="Country Name"
+  value={selectedCountry ? selectedCountry.name : ''}
+  readOnly
+/>
+      <Button type="submit">Create</Button>
+    </form>
+  </Modal.Body>
+</Modal>
 
 
 
@@ -491,6 +948,12 @@ const AdminPage = () => {
         </Modal.Body>
       </Modal>
 
+
+
+
+
+
+
    
 </div>
       <div className="user-list-section">
@@ -504,6 +967,11 @@ const AdminPage = () => {
           ))}
         </ul>
       </div>
+
+
+
+
+
 
 
 
@@ -536,6 +1004,163 @@ const AdminPage = () => {
     ))}
   </ul>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div className="country-list-section">
+  <h2>Cities List</h2>
+  <ul>
+    {cities.map((city) => (
+      <li key={city.id}>
+       <div className='country-name'> {city.name}</div>
+        <button onClick={() => handleEditCity(city)} className='country-edit'>Edit</button>
+        <button onClick={() => handleDeleteCity(city._id)}>Delete</button>
+      </li>
+    ))}
+  </ul>
+</div>
+
+
+
+
+
+
+
+<div className='country-list-section'>
+  <input
+    type="text"
+    placeholder="Type Name"
+    value={typeName}
+    onChange={handleTypeNameChange}
+    className='modal-form-input'
+  />
+  <button onClick={handleCreateType} className='modal-form-button create-admin-btn'>Create Type</button>
+</div>
+<ul className='user-list-section'>
+  {types.map((type) => (
+    <li key={type._id}>
+      <span className='country-name'>{type.name}</span>
+      <button onClick={() => handleDeleteType(type._id)} className='country-edit'>Delete</button>
+    </li>
+  ))}
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>
+      <div className='country-list-section'>
+        <form onSubmit={selectedPlace ? handleUpdatePlace : handleCreatePlace}>
+          <input
+            type="text"
+            name="name"
+            placeholder="Name"
+            value={placeData.name}
+            onChange={handleInputChange}
+            className='modal-form-input'
+          />
+          <input
+            type="text"
+            name="Description"
+            placeholder="Description"
+            value={placeData.Description}
+            onChange={handleInputChange}
+            className='modal-form-input'
+          />
+          <input
+            type="text"
+            name="Address"
+            placeholder="Address"
+            value={placeData.Address}
+            onChange={handleInputChange}
+            className='modal-form-input'
+          />
+          <input
+            type="text"
+            name="rating"
+            placeholder="Rating"
+            value={placeData.rating}
+            onChange={handleInputChange}
+            className='modal-form-input'
+          />
+          <select
+            name="cityId"
+            value={placeData.cityId}
+            onChange={handleInputChange}
+            className='modal-form-input'
+          >
+            <option value="">Select City</option>
+            {cities.map((city) => (
+              <option key={city._id} value={city._id}>
+                {city.name}
+              </option>
+            ))}
+          </select>
+          <select
+            name="typeId"
+            value={placeData.typeId}
+            onChange={handleInputChange}
+            className='modal-form-input'
+          >
+            <option value="">Select Type</option>
+            {types.map((type) => (
+              <option key={type._id} value={type._id}>
+                {type.name}
+              </option>
+            ))}
+          </select>
+          <button type="submit" className='modal-form-button create-admin-btn'>
+            {selectedPlace ? 'Update Place' : 'Create Place'}
+          </button>
+
+          <div>
+  <label htmlFor="images">Images:</label>
+  <input type="file" id="images" name="file" onChange={handleImage} multiple />
+
+  <div>
+  {images.map((image, index) => (
+    <img key={index} src={URL.createObjectURL(image)} alt={`Image ${index}`} style={{ width: "100px", height: "100px" }} />
+  ))}
+</div>
+ 
+</div>
+        </form>
+      </div>
+      <ul className='user-list-section'>
+        {places.map((place) => (
+          <li key={place._id}>
+            {place.name}
+            <button onClick={() => handleEditPlace(place)} className='country-edit'>Edit</button>
+            <button onClick={() => handleDeletePlace(place._id)} >Delete</button>
+          </li>
+        ))}
+      </ul>
+    </div>
 
 
 

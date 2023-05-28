@@ -4,10 +4,60 @@ import img1 from '../images/h11.jpg'
 import { Link } from "react-router-dom";
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import Footer from "./Footer";
+
 
 
 
 function Home() {
+
+
+
+
+    
+     // Replace with your array of reviews
+  
+      var settings = {
+        dots: true,
+        infinite: true,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 2000,
+        pauseOnHover: true
+      };
+
+
+
+
+  // const settings = {
+  //   dots: true,
+  //   infinite: true,
+  //   speed: 900,
+  //   slidesToShow: 1,
+  //   slidesToScroll: 1,
+  //   responsive: [
+  //     {
+  //       breakpoint: 768,
+  //       settings: {
+  //         slidesToShow: 1,
+  //       },
+  //     },
+  //     {
+  //       breakpoint: 480,
+  //       settings: {
+  //         slidesToShow: 1,
+  //       },
+  //     },
+  //   ],
+  // };
+
+
+
+
 
 
   const [reviews, setReviews] = useState([]);
@@ -62,7 +112,7 @@ useEffect(() => {
         <div className="home-nav">
           <img src={logo} alt="logo" className="logo"></img>
           <div className="header-link">
-            <Link to="/home" className="link-item">
+            <Link to="/" className="link-item">
               Home
             </Link>
             <Link to="/contact/" className="link-item">
@@ -73,6 +123,7 @@ useEffect(() => {
             </Link>
           </div>
         </div>
+        
         <p className="title">Travel Around The World</p>
         <div className="title2">
           Create your <div className="memo"> memories</div>
@@ -100,34 +151,45 @@ useEffect(() => {
 
 
 
-      <div className="all-countries">
+      
       <p className="home-countries">Start your vacation</p>
-
+      <div className="all-countries">
       <div className="country-flex">
         {countries.map((country) => (
           <div key={country._id} className="country-item-container">
-            <img src={country.image.url} alt={country.name} className="country-image" />
             <Link to={`/country/${country._id}`} className="country-item">
-              {country.name}
+            <img src={country.image.url} alt={country.name} className="country-image" />
+
+              <p>{country.name}</p>
             </Link>
           </div>
         ))}
       </div>
     </div>
 
+
+
+
+    <div className="gall-header">
+
+
+</div>
+
+
+
     <div className="gallery-container">
       <p>Our Clients Gallery</p>
       <div>
       {reviews.map((review) => (
-        <div key={review.id} className="review-item">
+        <div key={review.id} className="review-item-img">
           <div>
           {review.image.length > 0 && (
-            <img src={review.image[0].url} alt={review.name} className="review-image" />
+            <img src={review.image[0].url} alt={review.name} className="gal_img" />
             
           )}
           </div>
   
-          <hr />
+          
         </div>
       ))}
     </div>
@@ -138,23 +200,6 @@ useEffect(() => {
 
 
 
-    <div className="reviews-container">
-  <h2 className="reviews-heading">Reviews</h2>
-  {reviews.map((review) => (
-    <div key={review.id} className="review-item">
-        {review.image.length > 0 && (
-            <img src={review.image[0].url} alt={review.name} className="review-image" />
-            
-          )}
-      <div className="review-header">
-        <p className="review-author">{review.userId.name}</p>
-        <p className="review-date">{review.createdAt}</p>
-      </div>
-      <p className="review-comment">{review.comment}</p>
-      <hr className="review-divider" />
-    </div>
-  ))}
-</div>
 
 
     <div className="articles-container">
@@ -178,6 +223,84 @@ useEffect(() => {
           </div>
 
 
+
+{/* 
+    <div className="reviews-container-all" >
+  <h2 className="reviews-heading-all">Reviews</h2>
+  {reviews.map((review) => (
+    <div key={review.id} className="review-item-all">
+        {review.image.length > 0 && (
+            <img src={review.image[0].url} alt={review.name} className="review-image-all" />
+            
+          )}
+      <div className="review-header=all">
+        <p className="review-author">{review.userId.name}</p>
+        <p className="review-date">{review.createdAt}</p>
+     
+      <p className="review-comment">{review.comment}</p>
+      <hr className="review-divider" />
+      </div>
+    </div>
+  ))}
+</div> */}
+
+
+
+
+
+
+
+<h2 className="reviews-heading-all">Reviews</h2>
+
+
+<div className="main">
+<Slider {...settings}>
+
+
+{reviews.map((review) => (
+<div key={review.id} class="card">
+{review.image.length > 0 && (
+  <img src={review.image[0].url} alt={review.name} />
+  )}
+  <div className="details">
+  <h2>{review.userId.name}</h2>
+  <p>{new Date(review.createdAt).toLocaleDateString(undefined, {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+        })}</p>
+              <p >{review.comment}</p></div>
+
+</div>
+))}
+</Slider>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+<Footer />
     </div>
   );
 }

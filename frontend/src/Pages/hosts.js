@@ -2,12 +2,49 @@ import './hosts.css';
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import Header from './Header';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import Footer from './Footer';
 const MAX_RATING = 5;
 
 
 
 
 function Hosts() {
+
+
+
+
+
+  var settings = {
+    dots: true,
+    infinite: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 2000,
+    pauseOnHover: true
+  };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   const [comment, setComment] = useState('');
   const [rating, setRating] = useState(0);
   const [images, setImages] = useState([]);
@@ -188,46 +225,99 @@ const handleSubmit = async (event) => {
 
   return (
     <>
-<div className="user-list-section">
-  <h2 className="section-heading">Host List</h2>
-  <ul className="host-list">
+  <Header />
+  <div className="host-list-host">
     {/* {hosts.map((host) => ( */}
-      <li key={hosts._id} className="host-item">
-        {hosts.image && <img src={hosts.image.url} alt={hosts.name} className="host-image" />}
-        <div className="host-details">
-          <p className="host-name">{hosts.name}</p>
-          <p className="host-phone">{hosts.phone}</p>
-          <p className="host-description">{hosts.Description}</p>
+      <div key={hosts._id} className="host-item-host">
+        {hosts.image && <img src={hosts.image.url} alt={hosts.name} className="host-image-host" />}
+        <div className="host-details-host">
+          <p className="host-name-host">{hosts.name}</p>
+          <p className="host-phone-host">Phone : {hosts.phone}</p>
+          <p className="host-description-host">About : {hosts.Description}</p>
         </div>
-      </li>
+      </div>
     {/* ))} */}
-  </ul>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div className="main-host">
+    <p className='section-heading-host'>Reviews</p>
+<Slider {...settings}>
+
+
+{review.map((review) => (
+<div key={review.id} className="card-host">
+{review.image.length > 0 && (
+  <img src={review.image[0].url} alt={review.name} />
+  )}
+  <div className="details-host">
+  <h2>{review.userId.name}</h2>
+  <p>{new Date(review.createdAt).toLocaleDateString(undefined, {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+        })}</p>
+              <p >{review.comment}</p></div>
+
+</div>
+))}
+</Slider>
 </div>
 
-<div className="user-list-section">
+
+
+
+{/* <div className="user-list-section">
   <h2 className="section-heading">Reviews</h2>
   {review.map((review) => (
-    <div className="restaurant-card" key={review._id}>
-      <p className="review-author">{review.userId.name}</p>
-      <p className="review-comment">{review.comment}</p>
+    <div className="restaurant-card-host" key={review._id}>
+      <p className="review-author-host">{review.userId.name}</p>
+      <p className="review-comment-host">{review.comment}</p>
     </div>
   ))}
-</div>
+</div> */}
 
-<div className="user-list-section">
-  <h2 className="section-heading">Bookings</h2>
+
+
+
+
+
+<h2 className="section-heading-host">Bookings</h2>
+<div className="user-list-section-host">
+
   {book.map((booking) => (
-    <div className="restaurant-card" key={booking._id}>
-      <p className="booking-user">{booking.userId.name}</p>
-      <p className="booking-email">{booking.userId.email}</p>
-      <p className="booking-phone">{booking.userId.phone}</p>
-      <p className="booking-number">{booking.number}</p>
-      <p className="booking-dates">
-        {new Date(booking.startDate).toLocaleDateString()} - {new Date(booking.endDate).toLocaleDateString()}
+    <div className="restaurant-card-host" key={booking._id}>
+      <p className="booking-user">Name : {booking.userId.name}</p>
+      <p className="booking-email">E-mail : {booking.userId.email}</p>
+      <p className="booking-phone">Phone : {booking.userId.phone}</p>
+      <p className="booking-number">Number of guests : {booking.number}</p>
+      <p className="booking-dates">From : 
+        {new Date(booking.startDate).toLocaleDateString()} To {new Date(booking.endDate).toLocaleDateString()}
       </p>
     </div>
   ))}
 </div>
+
+
+
+
+
+
+
 
 <div className="post-review-section">
   <h2 className="section-heading">Post a Review</h2>
@@ -266,81 +356,7 @@ const handleSubmit = async (event) => {
   </form>
 </div>
 
-{/* <div className="user-list-section">
-        <h2>Host List</h2>
-        <ul>
-          
-            <li key={hosts._id}>
-            <img src={hosts.image? hosts.image.url : null} alt={hosts.name} />
-
-              <p>{hosts.name}</p>  
-           <p>{hosts.phone}</p>
-           <p>{hosts.Description}</p> 
-            </li>
-          
-        </ul>
-      </div>
-      <div className="user-list-section">
-      {review.map((review) => (
-            <div className="restaurant-card" key={review._id}>
-              <p>{review.userId.name}</p>
-
-              <p>{review.comment}</p>
-            
-            </div>
-          ))}
-      </div>
-      <div className="user-list-section">
-      {book.map((book) => (
-            <div className="restaurant-card" key={book._id}>
-              <p>{book.userId.name}</p>
-              <p>{book.userId.email}</p>
-              <p>{book.userId.phone}</p>
-              {book.number}
-              <p>{book.startDate}</p>
-              <p>{book.endDate}</p>
-            
-            </div>
-          ))}
-      </div>
-      <div>
-      <h2>Post a Review</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="comment">Comment:</label>
-          <textarea id="comment" value={comment} onChange={handleCommentChange} required />
-        </div>
-
-
-
-
-
-        <div>
-          <label htmlFor="rating">Rating:</label>
-          <div className="stars-container">{renderStars()}</div>
-        </div>
-   
-        <div>
-  <label htmlFor="images">Images:</label>
-  <input type="file" id="images" name="file" onChange={handleImage} multiple />
-
-  <div>
-  {images.map((image, index) => (
-    <img key={index} src={URL.createObjectURL(image)} alt={`Image ${index}`} style={{ width: "100px", height: "100px" }} />
-  ))}
-</div>
- 
-</div>
-        <div>
-            <input type='text' value={userId} onChange={(e) => { setUserId(e.target.value)
-            }}></input>
-        </div>
-        <button type="submit" disabled={isLoading}>
-          {isLoading ? 'Posting...' : 'Post Review'}
-        </button>
-      </form>
-      </div> */}
-  
+<Footer />
     </>
   );
 }

@@ -8,10 +8,35 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import Hosts from './hosts';
+import Header from './Header';
+import Footer from './Footer';
+import img2 from '../images/img2.jpg'
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+// import './RestaurantCarousel.css'; // Import custom CSS for the carousel component
+
+
+
 const MAX_RATING = 5;
 
 
 const City = () => {
+
+
+  const settings = {
+    dots: true,
+    fade: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
+
+
+
+
+  
   const [types, setTypes] = useState([]);
   const [place, setPlace] = useState([]);
   const [city, setCity] = useState([]);
@@ -282,14 +307,14 @@ useEffect(() => {
 
 
 <div>
-<h1>City Component</h1>
+<Header />
 
 
 
-            <img src={city.image? city.image.url : null} alt={city.name} />
+            <img src={city.image? city.image.url : null} alt={city.name} className='city-img' />
 {/* <img src={city.image.url} alt={city.name} className="country-image" /> */}
-<h3>{city.name}</h3>
-<h3>{city.Describtion}</h3>
+<h3 className='city-title'>{city.name}</h3>
+<h3 className='city-des'>{city.Describtion}</h3>
 
 
 <div className="buttonContainer">
@@ -324,32 +349,43 @@ useEffect(() => {
 
       <h3 className="placeName">{place.name}</h3>
       <p className="placeDescription">{place.Description}</p>
-      <p className="placeAddress">{place.Address}</p>
+      <p className="placeAddress">Adress : {place.Address}</p>
       </Link>
     </div>
   ))}
 </div>
-<div>
+
+
+
+
+<div className='book-div'>
+  <img src={img2}></img>
   <BookingComponent />
 </div>
-<div>
-  {/* <Hosts /> */}
 
 
-        <div className="city-container">
+
+
+<div className='host-list'>
+  
+<h1 className='host-title'>Our Hosts</h1>
+
+        <div className="host-container">
           {hosts.map((host) => (
-            <div className="city-card" key={host._id}>
-      <Link to={`/host/${host._id}`} className="country-item">
+            <div className="host-card" key={host._id}>
+      <Link to={`/host/${host._id}`} className="host-item">
               
 
                <img
                 src={host.image.url}
                 alt={host.name}
-                className="country-img"
+                className="host-img"
               />
-              <h3>{host.name}</h3>
-              <p>{host.Description}</p>
-              <p>{host.phone}</p></Link>
+              <h3 className='host-name-city'>{host.name}</h3>
+              <p className='host-des'>About : {host.Description}</p>
+              <p className='host-phone-city'>Phone : {host.phone}</p>
+              <p className='host-price-city'>$ {host.price} Per Day</p>
+              </Link>
              
               
               
@@ -359,7 +395,44 @@ useEffect(() => {
 </div>
 
 
-<div className="restaurant-container">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div className="restaurant-carousel">
+      <h2>Restaurants</h2>
+      <Slider {...settings}>
+        {restaurants.map((restaurant) => (
+          <div className="restaurant-card-city" key={restaurant._id}>
+            
+              {restaurant.image.length > 0 && (
+                <img
+                  src={restaurant.image[0].url}
+                  alt={restaurant.name}
+                  className="res-img-city"
+                />
+              )}
+            <div className="res-content-city">
+              <h3>{restaurant.name}</h3>
+              <p>About : {restaurant.Description}</p>
+              <p className='address-city'>Address : {restaurant.Address}</p>
+            </div>
+          </div>
+        ))}
+      </Slider>
+    </div>
+
+
+{/* <div className="restaurant-container">
           <h2>Restaurants</h2>
           {restaurants.map((restaurant) => (
             <div className="restaurant-card" key={restaurant._id}>
@@ -372,38 +445,44 @@ useEffect(() => {
               )}
 
               {/* <img src={restaurant.image.url} alt={restaurant.name} className="res-img"/> */}
-              <h3>{restaurant.name}</h3>
+              {/* <h3>{restaurant.name}</h3>
               <p>{restaurant.Description}</p>
               <p>{restaurant.Address}</p>
             </div>
           ))}
-        </div>
+        </div>  */}
 
-        <div className="restaurant-container">
-          <h2>Hotels</h2>
+        <div className="restaurant-container-city">
+          <h2 className='hotel-title'>Hotels</h2>
+      <Slider {...settings}>
+
           {hotels.map((hotel) => (
-            <div className="restaurant-card" key={hotel._id}>
+            <div className="restaurant-card-city" key={hotel._id}>
               {hotel.image.length > 0 && (
                 <img
                   src={hotel.image[0].url}
                   alt={hotel.name}
-                  className="res-img"
+                  className="res-img-city"
                 />
               )}
 
               {/* <img src={restaurant.image.url} alt={restaurant.name} className="res-img"/> */}
+              <div className="res-content-city">
               <h3>{hotel.name}</h3>
-              <p>{hotel.Description}</p>
-              <p>{hotel.Address}</p>
+              <p>About : {hotel.Description}</p>
+              <p className='address-city'>Address : {hotel.Address}</p>
+            </div>
             </div>
           ))}
+          
+          </Slider>
         </div>
 
 
 
 
 
-<div>
+{/* <div>
       <h2>Post a Review</h2>
       <form onSubmit={handleSubmit}>
         <div>
@@ -439,8 +518,8 @@ useEffect(() => {
           {isLoading ? 'Posting...' : 'Post Review'}
         </button>
       </form>
-      </div>
-
+      </div> */}
+<Footer />
 
 </div>
   );

@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../Pages/booking.css'
+import { useParams } from 'react-router-dom';
 
 const BookingComponent = () => {
+  const [totalPrice, setTotalPrice] = useState(0);
   const [books, setBooks] = useState([]);
+  const [host, setHost] = useState([]);
+  const [selectedHost, setSelectedHost] = useState(null);
   const [bookingData, setBookingData] = useState({
     startDate: '',
     endDate: '',
@@ -11,6 +15,23 @@ const BookingComponent = () => {
     hostId: '',
     userId: ''
   });
+
+  const cityId = useParams();
+
+
+
+
+  
+
+
+
+ 
+
+
+
+
+
+
 
   useEffect(() => {
     fetchBooks();
@@ -25,9 +46,63 @@ const BookingComponent = () => {
     }
   };
 
+  useEffect(() => {
+    const fetchHosts = async () => {
+      console.log(cityId)
+      try {
+        const response = await axios.get(`http://localhost:5000/host/getbyCity/${cityId.cityId}`);
+        setHost(response.data);
+        
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchHosts();
+  }, []);
+
+
+  // const handleInputChange = (e) => {
+  //   setBookingData({ ...bookingData, [e.target.name]: e.target.value });
+  // };
+
+
+
+
+
+
+
+
+
+
   const handleInputChange = (e) => {
-    setBookingData({ ...bookingData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+  
+    if (name === 'startDate' || name === 'endDate') {
+      const startDate = new Date(bookingData.startDate);
+      const endDate = new Date(bookingData.endDate);
+      const timeDiff = Math.abs(endDate.getTime() - startDate.getTime());
+      const numberOfDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+      const pricePerDay = parseFloat(host.price);
+      const totalPrice = isNaN(pricePerDay) || numberOfDays <= 0 ? 0 : numberOfDays * pricePerDay;
+  
+      setBookingData((prevState) => ({
+        ...prevState,
+        [name]: value,
+        totalPrice: totalPrice.toFixed(2),
+      }));
+    } else {
+      setBookingData((prevState) => ({
+        ...prevState,
+        [name]: value,
+      }));
+    }
   };
+  
+
+
+
+
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -39,6 +114,15 @@ const BookingComponent = () => {
     } catch (error) {
       console.log(error);
     }
+  };
+
+
+
+  const handleHostSelection = (e) => {
+    const selectedHostId = e.target.value;
+    const selectedHost = host.find((host) => host._id === selectedHostId);
+    setSelectedHost(selectedHost);
+    setBookingData({ ...bookingData, hostId: selectedHostId });
   };
 
   return (
@@ -74,14 +158,27 @@ const BookingComponent = () => {
           onChange={handleInputChange}
         />
         <br />
-        <label htmlFor="hostId">Host ID:</label>
-        <input
-          type="text"
+        <label htmlFor="hostId">Host:</label>
+        <select
           name="hostId"
           id="hostId"
           value={bookingData.hostId}
-          onChange={handleInputChange}
-        />
+          onChange={handleHostSelection}
+        >
+          <option value="">Select a host</option>
+          {host.map((host) => (
+            <option key={host._id} value={host._id}>
+              {host.name}
+            </option>
+          ))}
+        </select>
+        {selectedHost && (
+          <p>Price: $ {selectedHost.price}</p>
+        )}
+        <br />
+        <div className="total-price">
+  <p>Total Price: {totalPrice}</p>
+</div>
         <br />
         <label htmlFor="userId">User ID:</label>
         <input

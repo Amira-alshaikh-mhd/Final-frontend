@@ -3,16 +3,38 @@
 import './place.css';
 import BookingComponent from './booking';
 import { Link } from "react-router-dom";
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import Hosts from './hosts';
+import Footer from './Footer';
+import Header from './Header';
 const MAX_RATING = 5;
 
 const Place = () => {
 
-  // Review
+
+  var settings = {
+    dots: true,
+    infinite: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 2000,
+    pauseOnHover: true
+  };
+
+
+
+
+
+
+
+  
 
   const [comment, setComment] = useState('');
   const [rating, setRating] = useState(0);
@@ -175,89 +197,101 @@ const Place = () => {
 
 return(
     <>
+<Header />
 
 
-<div >
+
+<div className='place-one'>
         
         
           
-            <div key={place._id}>
-              <h3>{place.name}</h3>
-            <img src={place.image? place.image[0].url: null} alt={place.name} />
-
-              <p>{place.name}</p>  
+            <div className='place-map' key={place._id}>
+            <img className='place-img-one' src={place.image? place.image[0].url: null} alt={place.name} />
+            <h3 className='place-name-one'>{place.name}</h3>
            
-           <p>{place.Description}</p> 
+           <p className='place-des-one'>{place.Description}</p> 
+           <p className='place-add-one'> Address : {place.Address}</p> 
             </div>
           
         
       </div>
-      <div>
-      <div className="user-list-section">
-      {review.map((review) => (
-            <div className="restaurant-card" key={review._id}>
-              <p>{review.userId.name}</p>
-              <p className="review-date">
-        {new Date(review.createdAt).toLocaleDateString(undefined, {
+      <hr />
+
+
+
+
+
+
+      <div className="main-host">
+    <p className='section-heading-host'>Reviews</p>
+<Slider {...settings}>
+
+
+{review.map((review) => (
+<div key={review.id} className="card-host">
+{review.image.length > 0 && (
+  <img src={review.image[0].url} alt={review.name} />
+  )}
+  <div className="details-host">
+  <h2>{review.userId.name}</h2>
+  <p>{new Date(review.createdAt).toLocaleDateString(undefined, {
           year: 'numeric',
           month: 'long',
           day: 'numeric',
-        })}
-      </p>
+        })}</p>
+              <p >{review.comment}</p></div>
 
-              <p>{review.comment}</p>
-              {/* {place.image.length > 0 && (
-                <img
-                  src={place.image[1].url}
-                  alt={place.name}
-                  className="res-img"
-                />
-              )} */}
-            </div>
-          ))}
-      </div>
-      </div>
+</div>
+))}
+</Slider>
+</div>
+
+
+
+
+
 
 
     
-<div>
-      <h2>Post a Review</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="comment">Comment:</label>
-          <textarea id="comment" value={comment} onChange={handleCommentChange} required />
-        </div>
 
-
-
-
-
-        <div>
-          <label htmlFor="rating">Rating:</label>
-          <div className="stars-container">{renderStars()}</div>
-        </div>
-   
-        <div>
-  <label htmlFor="images">Images:</label>
-  <input type="file" id="images" name="file" onChange={handleImage} multiple />
-
-  <div>
-  {images.map((image, index) => (
-    <img key={index} src={URL.createObjectURL(image)} alt={`Image ${index}`} style={{ width: "100px", height: "100px" }} />
-  ))}
-</div>
- 
-</div>
-        <div>
-            <input type='text' value={userId} onChange={(e) => { setUserId(e.target.value)
-            }}></input>
-        </div>
-        <button type="submit" disabled={isLoading}>
-          {isLoading ? 'Posting...' : 'Post Review'}
-        </button>
-      </form>
+<div className="post-review-section">
+  <h2 className="section-heading">Post a Review</h2>
+  <form onSubmit={handleSubmit} className="review-form">
+    <div>
+      <label htmlFor="comment" className="form-label">Comment:</label>
+      <textarea id="comment" value={comment} onChange={handleCommentChange} required className="form-textarea" />
+    </div>
+    <div>
+      <label htmlFor="rating" className="form-label">Rating:</label>
+      <div class="rate">
+        <a href="#!" class="active">★</a>
+        <a href="#!" class="active">★</a>
+        <a href="#!" class="active">★</a>
+        <a href="#!">★</a>
+        <a href="#!">★</a>
       </div>
+      {/* <div className="stars-container">{renderStars()}</div> */}
+    </div>
+    <div>
+      <label htmlFor="images" className="form-label">Images:</label>
+      <input type="file" id="images" name="file" onChange={handleImage} multiple className="form-file-input" />
+      <div className="image-preview">
+        {images.map((image, index) => (
+          <img key={index} src={URL.createObjectURL(image)} alt={`Image ${index}`} className="image-preview-item" />
+        ))}
+      </div>
+    </div>
+    <div>
+      <label htmlFor="userId" className="form-label">User ID:</label>
+      <input type="text" id="userId" value={userId} onChange={(e) => setUserId(e.target.value)} className="form-input" />
+    </div>
+    <button type="submit" disabled={isLoading} className="submit-button">
+      {isLoading ? 'Posting...' : 'Post Review'}
+    </button>
+  </form>
+</div>
 
+<Footer />
     </>
     );
 };

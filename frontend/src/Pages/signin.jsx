@@ -30,17 +30,18 @@ const SignInPage = () => {
 
 
       if (response.data.role === "superadmin") {
-        sessionStorage.setItem('id', response.data._id);
+        sessionStorage.setItem('id', response.data.user);
         sessionStorage.setItem('token', response.data.token);
         sessionStorage.setItem('role', response.data.role);
 
         navigate("/Dashboard", { replace: true });
     } else if (response.data.role === "user") {
-        sessionStorage.setItem('id', response.data._id);
+        sessionStorage.setItem('id', response.data.user);
         sessionStorage.setItem('token', response.data.token);
         sessionStorage.setItem('role', response.data.role);
-        sessionStorage.setItem('email', response.data.email);
-        sessionStorage.setItem('phone', response.data.phone);
+        sessionStorage.setItem('name', response.data.name);
+        // sessionStorage.setItem('email', response.data.email);
+        // sessionStorage.setItem('phone', response.data.phone);
         navigate("/", { replace: true });
     } else {
 
@@ -52,13 +53,16 @@ const SignInPage = () => {
 
       if (response.status === 200) {
         const  token  = response.data;
-        console.log(token)
+        console.log(token, 'dssd')
         navigate("/", { replace: true });
+        
         // Handle successful login, e.g., store the token in local storage or state
       } else {
         const { message } = response.data;
         setError(message);
       }
+      console.log(response.data.user)
+
     } catch (error) {
       console.log(error);
       if (error.response && error.response.status === 401) {

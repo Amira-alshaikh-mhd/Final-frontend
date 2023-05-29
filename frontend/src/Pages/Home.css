@@ -1,332 +1,266 @@
-@import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Kite+One&display=swap");
 
-.home-header{
-    background-image: url("../images/h4.jpg");
-    background-attachment: fixed;
-    background-color: #cccccc;
-    width: 100%;
-    height: 62rem;
-    background-repeat: no-repeat;
-    background-size:cover;
-    background-position: bottom;
-   
-  
+.home-header {
+  background-image: url("../images/h4.jpg");
+  background-attachment: fixed;
+  background-color: #cccccc;
+  width: 100%;
+  height: 62rem;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom;
 }
-.home-nav{
-   display: flex;
-   
-    
+.home-nav {
+  display: flex;
 }
 
-.header-link{
-    display: flex;
-    justify-content: center;
-    padding-top: 3rem;
-    padding-left: 44rem;
+.header-link {
+  display: flex;
+  justify-content: center;
+  padding-top: 3rem;
+  padding-left: 44rem;
 }
 
+.logo {
 
-.logo{
-    width: 13rem;
-    height: 6rem;
-    margin-top: 1rem;
-    
-} 
-.title{
-    position: relative;
-    margin-top: 36rem;
-    margin-left: 4%;
-    font-size: 3rem;
-    font-family: 'Kaushan Script', cursive;
+  object-fit: contain;
+  margin-left: 3rem;
 }
- 
-.title2{
-    display: flex;
-    align-content: center;
-    margin-top: 2rem;
-    margin-left: 18%;
-    font-size: 2rem;
-    font-family: 'Kaushan Script', cursive;
+.title {
+  position: relative;
+  margin-top: 36rem;
+  margin-left: 4%;
+  font-size: 3rem;
+  /* font-family: 'Kaushan Script', cursive; */
+  font-family: "Kite One";
 }
-.memo{
-    color: #fc3b0b;
-    padding-left: 0.5rem;
+
+.title2 {
+  display: flex;
+  align-content: center;
+  margin-top: 2rem;
+  margin-left: 18%;
+  font-size: 2rem;
+  font-family: "Kite One";
 }
- 
-  
-  .link-item {
-    margin: 0 1rem;
-    text-decoration: none;
-    color: black;
-    padding-left: 5rem;
-    font-size: 1.5rem;
-    font-family: 'Kaushan Script', cursive;
+.memo {
+  color: #fc3b0b;
+  padding-left: 0.5rem;
+}
 
-  }
+.link-item {
+  margin: 0 1rem;
+  text-decoration: none;
+  color: black;
+  padding-left: 5rem;
+  font-size: 1.5rem;
+  font-family: "Kite One";
+}
 
-  .link-item:hover, .link-item:active{
-    color: #fc3b0b;
-  }
+.link-item:hover,
+.link-item:active {
+  color: #fc3b0b;
+}
 
- 
+.all-countries {
+  /* background-color: #f3efef; */
+  /* padding: 20px; */
+  margin-bottom: 24rem;
+  margin-top: 24rem;
+  font-family: "Kite One";
+}
+.couName {
+  font-size: 2rem;
+}
 
+.home-countries {
+  font-size: 3rem;
+  margin-top: 11rem;
+  margin-bottom: -17rem;
+  margin-left: 40%;
+  font-weight: bold;
+  color: #fc3b0b;
+  font-family: "Kite One";
+}
 
+.country-flex {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+}
 
+.country-item-container {
+  width: 318px;
+  margin: 2rem;
+  border-radius: 5px;
+  box-shadow: 0 77px 155px rgba(243, 54, 54, 0.1);
+  overflow: hidden;
+}
 
+.country-image {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  /* box-shadow: 0 2rem 2rem rgba(0, 0, 0, 0.1); */
+  box-shadow: 5px 10px 18px rgb(235, 170, 170);
+}
 
+.country-image:hover {
+  transform: scale(1.05);
+  width: 20rem;
+  height: 20rem;
+  margin-bottom: 1rem;
+}
 
+.country-item {
+  display: block;
+  /* margin-bottom: 3rem; */
+  width: 20rem;
+  padding: 10px;
+  text-align: center;
+  background-color: #fff;
+  color: #333;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  .all-countries {
-    /* background-color: #f3efef; */
-    /* padding: 20px; */
-    margin-bottom: 24rem;
-    margin-top: 24rem;
-    
-  }
-  
-  .home-countries {
-    font-size: 44px;
-    margin-top: 11rem;
-    margin-bottom: -17rem;
-    margin-left:40%;
-    font-weight: bold;
-    color: #fc3b0b;
-    font-family: 'Kaushan Script', cursive;
-  }
-  
-  .country-flex {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: 20px;
-  }
-  
-  .country-item-container {
-    width: 318px;
-    margin: 2rem;
-    border-radius: 5px;
-    box-shadow: 0 77px 155px rgba(243, 54, 54, 0.1);
-    overflow: hidden;
-  }
-  
-  .country-image {
-    width: 100%;
-    height: 300px;
-    object-fit: cover;
-    /* box-shadow: 0 2rem 2rem rgba(0, 0, 0, 0.1); */
-    box-shadow: 5px 10px 18px rgb(235, 170, 170);
-
-
-    
-  }
-
-  .country-image:hover{
-    transform: scale(1.05);
-    width: 20rem;
-    height: 20rem;
-    margin-bottom: 1rem;
-  }
-  
-  
-  .country-item {
-    display: block;
-    /* margin-bottom: 3rem; */
-    width: 20rem;
-    padding: 10px;
-    text-align: center;
-    background-color: #fff;
-    color: #333;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
-  }
-  
-  /* .country-item:hover {
+/* .country-item:hover {
     background-color: #f5f5f5;
   } */
-  
 
-
-.gall-header{
-  background-image: url("../images/fotoalbum-t.jpg") ;
+.gall-header {
+  background-image: url("../images/fotoalbum-t.jpg");
   background-attachment: fixed;
   background-position: center;
 
   width: auto;
   height: 55rem;
+  margin-top: -9rem;
 }
 
+.gallery-container {
+  margin-top: 40px;
+  text-align: center;
+}
 
+.gallery-container p {
+  font-size: 44px;
+  /* font-size: 24px; */
+  font-weight: bold;
+  color: #fc3b0b;
+  margin-bottom: 10rem;
+  font-family: "Kite One";
+}
 
-  .gallery-container {
-    margin-top: 40px;
-    text-align: center;
-  }
-  
-  .gallery-container p {
-    font-size: 44px;
-    /* font-size: 24px; */
-    font-weight: bold;
-    color: #fc3b0b;
-    margin-bottom: 10rem;
-    font-family: 'Kaushan Script', cursive;
-  }
-  
-   .review-item-img {
-    display: inline-block;
-    margin: 10px; 
-   }
-  /* .review-item{
+.review-item-img {
+  display: inline-block;
+  margin: 10px;
+}
+/* .review-item{
     display: flex;
     flex-direction: row;
   }  */
 
+.gal_img {
+  width: 22rem;
+  height: 22rem;
+  object-fit: cover;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
 
-  .gal_img {
-    width: 22rem;
-    height: 22rem;
-    object-fit: cover;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-  }
+.review-image {
+  width: 25px;
+  height: 25px;
+  object-fit: cover;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
 
-
-
-
-
-
-
-   .review-image {
-    width: 25px;
-    height: 25px;
-    object-fit: cover;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-  } 
-  
-   .review-item:hover .review-image {
-    transform: scale(1.05);
-    width: 12rem;
-    height: auto;
-  } 
-   /* .country-item-container:hover {
+.review-item:hover .review-image {
+  transform: scale(1.05);
+  width: 12rem;
+  height: auto;
+}
+/* .country-item-container:hover {
     transform: scale(1.05);
     width: 25rem;
     height: auto;
   } */
-   
-  hr {
-    border: none;
-    border-top: 1px solid #ccc;
-    margin: 20px 0;
-  }
-  
 
-  .articles-container {
-    margin-top: 40px;
-  }
-  
-  .articles-container h2 {
-    font-size: 24px;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 20px;
-  }
-  
-  .article-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
-  .article-image {
-    width: 200px;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .article-content {
-    flex: 1;
-    padding: 0 20px;
-  }
-  
-  .article-content h3 {
-    font-size: 20px;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 10px;
-  }
-  
-  .article-content p {
-    font-size: 16px;
-    color: #666;
-  }
-  
-  .article-link {
-    display: inline-block;
-    margin-top: 10px;
-    font-size: 14px;
-    color: #333;
-    text-decoration: none;
-    border-bottom: 1px solid #333;
-    transition: border-color 0.3s ease;
-  }
-  
-  .article-link:hover {
-    border-color: transparent;
-  }
-  
+hr {
+  border: none;
+  border-top: 1px solid #ccc;
+  margin: 20px 0;
+}
 
+.articles-container {
+  margin-top: 40px;
+}
 
-  /* .gal_img {
-    --f: .1; 
-    --r: 10px; 
-    
-    --_f: calc(100%*var(--f)/(1 + var(--f)));
-    --_a: calc(90deg*var(--f));
-    width: 250px; 
-    aspect-ratio: calc(1 + var(--f));
-    object-fit: cover;
-    clip-path: inset(0 var(--_f) 0 0 round var(--r));
-    transform: perspective(400px) var(--_t,rotateY(var(--_a)));
-    transition: .5s;
-    cursor: pointer;
-    margin-bottom: 3rem;
-  }
-  .gal_img:hover {
-    clip-path: inset(0 0 0 var(--_f) round var(--r));
-    --_t:translateX(calc(-1*var(--_f))) rotateY(calc(-1*var(--_a)))
-  } */
-  
+.articles-container h2 {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #fc3b0b;
+  margin-bottom: 11rem;
+  margin-top: 12rem;
+  text-align: center;
+  font-family: "Kite One";
+}
 
-  
+.article-item {
+  display: flex;
+  justify-content: stretch;
+  align-items: center;
+  margin-bottom: 20px;
+  font-family: "Kite One";
+}
 
+.article-image {
+  width: 48rem;
+  height: 37rem;
+  object-fit: cover;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-family: "Kite One";
+  margin-left: 4rem;
+}
 
+.article-content {
+  flex: 1;
+  padding: 0 20px;
+  margin-right: 4rem;
+}
 
+.article-content h3 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
 
+.article-content p {
+  font-size: 1.5rem;
+  color: #666;
+}
 
-/* YourComponent.css */
+.article-link {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 14px;
+  color: #333;
+  text-decoration: none;
+  border-bottom: 1px solid #333;
+  transition: border-color 0.3s ease;
+}
+
+.article-link:hover {
+  border-color: transparent;
+}
 
 .reviews-container-all {
   max-width: 1112px;
@@ -340,9 +274,11 @@
   text-align: center;
   /* background-color: #df816a ; */
   position: relative;
-margin-top: 33rem;
-  z-index: 1;
+  margin-top: 14rem;
+  color: #fc3b0b;
+  font-family: "Kite One";
 
+  font-size: 4rem;
 }
 
 .review-item-all {
@@ -350,21 +286,17 @@ margin-top: 33rem;
   padding: 20px;
   text-align: center;
   border: #fc3b0b solid 2px;
-  margin-left:  10px;
-
-  
-
+  margin-left: 10px;
 }
 
-.review-image-all{
-  
+.review-image-all {
   position: relative;
   bottom: 2px;
   width: 150px;
   height: 150px;
   object-fit: cover;
   border-radius: 50%;
-  margin-top:  10px;
+  margin-top: 10px;
   /* z-index: 2; */
 }
 
@@ -373,7 +305,7 @@ margin-top: 33rem;
 }
 
 .review-author {
-  position:absolute;
+  position: absolute;
   top: 50px;
   right: 65px;
   font-weight: bold;
@@ -382,16 +314,14 @@ margin-top: 33rem;
 .review-date {
   color: #888;
   margin-top: 5px;
-   position:absolute;
+  position: absolute;
   top: 85px;
   right: 39px;
 }
 
 .review-comment {
   margin-top: 10px;
- word-wrap:break-word  /* text-overflow: ellipsis; */
-  
-
+  word-wrap: break-word; /* text-overflow: ellipsis; */
 }
 
 .review-divider {
@@ -400,61 +330,54 @@ margin-top: 33rem;
   border-top: 1px solid #ccc;
 }
 
-
-
-
-
-
-
-
-
 .main {
   min-height: 50vh;
-  /* display: flex; */
-  /* flex-direction: column; */
-  justify-content: center;
-  align-items: center;
+  
+  /* display: flex;
+  flex-direction: column; */
+  /* justify-content: center;
+  align-items: center; */
+  width: 98%;
+  /* margin-right: 1rem; */
+  /* margin-left: 4rem; */
+  /* position: relative;
+  left: 1rem; */
+  
 }
-
-
 
 .card {
   background: #f1f1f1;
   border-radius: 8px;
-  font-family: sans-serif;
-  margin: 30px;
-  padding: 16px;
-  position: relative;
-  width: 220px;
-  overflow:visible;
+  font-family: "Kite One";
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: center;
+  align-items: center;
+  
+  /* margin: 30px; */
+  /* padding: 16px; */
+  /* position: relative; */
+  width: 33rem !important;
+  /* overflow: visible; */
+  height: 18rem !important;
+  margin-left: 3rem;
 }
 .card img {
-
-  box-shadow: 0 0 16px 0 rgba(0,0,0, 0.5);
-  margin: 0 0 -117px -6px;
-  width: 40%;
-  height: 120px;
+  box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.5);
+  /* margin: 0 0 -117px -6px; */
+  width: 46%;
+  height: 19rem !important;
   object-fit: cover;
-  border-radius: 55rem;
+  border-radius: 6px;
+  height: 10rem;
+  margin-right: 8rem;
 }
 .card h2 {
   font-size: 18px;
   margin: 8px 0;
   padding: contentPadding;
 }
-/* .card h2:before {
-  content: '';
-  background-image: url('https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60');
-  background-position: center center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  border-radius: 50%;
-  width: 45px;
-  height: 45px;
-  position: absolute;
-  top: calc(83% - 15px);
-  left: -10px;
-} */
+
 .card h2 a {
   color: #545454;
   text-decoration: none;
@@ -474,46 +397,19 @@ margin-top: 33rem;
   font-weight: 300;
   margin: 8px 0 0;
   padding: contentPadding;
-}
-
   
-
-.details{
-  position: relative;
-  top: -1rem;
-  right: -19rem;
 }
-.details h2{
+
+.details {
+ margin-right: 3rem;
+ 
+}
+.details h2 {
   font-size: 2rem;
-  font-family: 'Kaushan Script', cursive;
-
+  font-family: "Kite One";
 }
 
-.div-mar{
-margin-left: 3rem;
-margin-right: 3rem;
+.div-mar {
+  margin-left: 3rem;
+  margin-right: 3rem;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-

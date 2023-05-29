@@ -4,6 +4,11 @@ import '../Pages/booking.css'
 import { useParams } from 'react-router-dom';
 
 const BookingComponent = () => {
+  const cityId = useParams();
+
+
+  const userId = sessionStorage.getItem('id');
+
   const [totalPrice, setTotalPrice] = useState(0);
   const [books, setBooks] = useState([]);
   const [host, setHost] = useState([]);
@@ -13,13 +18,11 @@ const BookingComponent = () => {
     endDate: '',
     number: '',
     hostId: '',
-    userId: ''
+    userId: userId
   });
 
-  const cityId = useParams();
 
-
-
+    
 
   
 

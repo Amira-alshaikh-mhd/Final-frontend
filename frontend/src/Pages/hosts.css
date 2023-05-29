@@ -1,9 +1,10 @@
 .section-heading-host {
-  margin-bottom: 2rem;
+  margin-bottom: 7rem;
   font-size: 4rem;
   text-align: center;
   color: #fc3b0b;
-  font-family: "Kaushan Script", cursive;
+  font-family:'Kite One' ;
+  margin-top: 15rem;
 }
 
 .host-list-host {
@@ -11,7 +12,7 @@
   text-align: center;
   width: 36%;
   height: 22rem;
-  border: 2px solid #333333;
+  /* border: 2px solid #333333; */
   position: relative;
   right: -34%;
   margin-bottom: 17rem;
@@ -19,19 +20,21 @@
 
 .host-item-host {
   display: flex;
-  justify-content: center;
+  justify-content:space-around;
   align-items: center;
   margin-bottom: 5rem;
   height: 100%;
+  
 }
 
 .host-image-host {
-  width: 18rem;
-  height: 18rem;
-  border-radius: 50%;
+  width: 33rem;
+  height: 33rem;
+  border-radius: 1%;
   object-fit: cover;
-  margin-left: -6rem;
-  margin-right: 8rem;
+  margin-left: -10rem;
+  margin-right: 34rem;
+  margin-top: auto;
 }
 
 .host-details-host {
@@ -47,12 +50,12 @@
   font-size: 4rem;
   text-align: center;
   color: #fc3b0b;
-  font-family: "Kaushan Script", cursive;
+  font-family:'Kite One' ;
 }
 
 .host-phone-host {
   color: #3b8fdf;
-  font-family: "Times New Roman", Times, serif;
+  font-family:'Kite One' ;
 
   font-size: 16px;
   margin-bottom: 2rem;
@@ -61,6 +64,8 @@
 .host-description-host {
   font-size: 14px;
   color: #777777;
+  font-family:'Kite One' ;
+
 }
 /*   
   .review-author-host {
@@ -86,6 +91,8 @@
   border-radius: 5px;
   margin-bottom: 20px;
   margin-left: 3rem;
+  font-family:'Kite One' ;
+
 }
 
 .booking-user {
@@ -108,7 +115,7 @@
 
 .booking-dates {
   font-size: 14px;
-  color: #777777;
+  color: #0662ec;
 }
 
 .post-review-section {
@@ -129,12 +136,14 @@
   font-size: 2rem;
   text-align: center;
   color: #fc3b0b;
-  font-family: "Kaushan Script", cursive;
+  font-family:'Kite One' ;
 }
 
 .form-label {
   font-size: 16px;
   font-weight: bold;
+  font-family:'Kite One' ;
+
   display: block;
   margin-bottom: 5px;
 }
@@ -144,6 +153,8 @@
   width: 100%;
   padding: 10px;
   font-size: 14px;
+  font-family:'Kite One' ;
+
   border-radius: 5px;
   border: 1px solid #dddddd;
   margin-bottom: 10px;
@@ -170,6 +181,8 @@
 .submit-button {
   padding: 10px 20px;
   font-size: 16px;
+  font-family:'Kite One' ;
+
   background-color: #fc3b0b;
   color: #ffffff;
   border: none;
@@ -192,25 +205,44 @@ a {
   /* flex-direction: column; */
   justify-content: center;
   align-items: center;
+  margin-top: 31rem;
 }
 
 .card-host {
+
+
   background: #f1f1f1;
   border-radius: 8px;
-  font-family: sans-serif;
-  /* margin: 30px; */
-  padding: 16px;
-  position: relative;
-  width: 220px;
-  overflow: visible;
+  font-family: "Kite One";
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between;
+  align-items: center;
+  
+ 
+  width: 33rem !important;
+  /* overflow: visible; */
+  height: 18rem !important;
+  margin-left: 33rem;
+
 }
 .card-host img {
   box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.5);
+  
+  width: 33rem;
+  height: 19rem !important;
+  object-fit: cover;
+  border-radius: 6px;
+  height: 10rem;
+  margin-right: 8rem;
+
+
+  /* box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.5);
   margin: 0 0 -117px -6px;
   width: 19%;
   height: 120px;
   object-fit: cover;
-  border-radius: 55rem;
+  border-radius: 55rem; */
 }
 .card-host h2 {
   font-size: 18px;
@@ -240,11 +272,9 @@ a {
 }
 
 .details-host {
-  position: relative;
-  top: -1rem;
-  right: -40rem;
+ width: 12rem;
 }
 .details-host h2 {
   font-size: 2rem;
-  font-family: "Kaushan Script", cursive;
+  font-family:'Kite One' ;
 }

@@ -21,7 +21,7 @@ const Place = () => {
   var settings = {
     dots: true,
     infinite: true,
-    slidesToShow: 1,
+    slidesToShow: 3,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 2000,
@@ -222,7 +222,46 @@ return(
 
 
 
-      <div className="main-host">
+
+
+
+
+
+      <p className='section-heading-host'>Reviews</p>
+
+<div className="main">
+<Slider {...settings}>
+
+
+{review.map((review) => (
+<div key={review.id} class="card">
+{review.image.length > 0 && (
+  <img src={review.image[0].url} alt={review.name} />
+  )}
+  <div className="details">
+  <h2>{review.userId.name}</h2>
+  <p>{new Date(review.createdAt).toLocaleDateString(undefined, {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+        })}</p>
+              <p >{review.comment}</p></div>
+
+</div>
+))}
+</Slider>
+</div>
+
+
+
+
+
+
+
+
+
+
+      {/* <div className="main-host">
     <p className='section-heading-host'>Reviews</p>
 <Slider {...settings}>
 
@@ -244,7 +283,7 @@ return(
 </div>
 ))}
 </Slider>
-</div>
+</div> */}
 
 
 
@@ -261,7 +300,7 @@ return(
       <label htmlFor="comment" className="form-label">Comment:</label>
       <textarea id="comment" value={comment} onChange={handleCommentChange} required className="form-textarea" />
     </div>
-    <div>
+    {/* <div>
       <label htmlFor="rating" className="form-label">Rating:</label>
       <div class="rate">
         <a href="#!" class="active">★</a>
@@ -270,8 +309,8 @@ return(
         <a href="#!">★</a>
         <a href="#!">★</a>
       </div>
-      {/* <div className="stars-container">{renderStars()}</div> */}
-    </div>
+      
+    </div> */}
     <div>
       <label htmlFor="images" className="form-label">Images:</label>
       <input type="file" id="images" name="file" onChange={handleImage} multiple className="form-file-input" />

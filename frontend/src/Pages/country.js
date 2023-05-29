@@ -23,7 +23,7 @@ const Country = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 2000,
+    autoplaySpeed: 6000,
     pauseOnHover: true
   };
 
@@ -124,9 +124,9 @@ const Country = () => {
               )}
             </div>
           ))}</div>
-          <div className="count-des">
-          <p className="title">Travel Around<div className="memo"> {country.name}</div></p>
-        <div className="title2">
+          <div className="count-des-co">
+          <p className="title-co">Travel Around<div className="memo-co"> {country.name}</div></p>
+        <div className="title2-co">
           Create your  memories
         </div>
           </div>

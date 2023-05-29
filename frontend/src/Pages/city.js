@@ -186,7 +186,8 @@ useEffect(() => {
   const [isLoading, setIsLoading] = useState(false);
 
 
-
+    const Id = sessionStorage.getItem('id');
+  
 
 
 
@@ -224,78 +225,78 @@ useEffect(() => {
 
 
 
-  const handleCommentChange = (event) => {
-    setComment(event.target.value);
-  };
+//   const handleCommentChange = (event) => {
+//     setComment(event.target.value);
+//   };
 
-  const handleRatingChange = (event) => {
-    // setRating(event.target.value);
-  };
+//   const handleRatingChange = (event) => {
+//     // setRating(event.target.value);
+//   };
 
-  const handleImageChange = (event) => {
-    const selectedImages = Array.from(event.target.files);
-    setImages(selectedImages);
-  };
+//   const handleImageChange = (event) => {
+//     const selectedImages = Array.from(event.target.files);
+//     setImages(selectedImages);
+//   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    setIsLoading(true);
+//   const handleSubmit = async (event) => {
+//     event.preventDefault();
+//     setIsLoading(true);
 
-    try {
-      const reviewData = new FormData();
-      reviewData.append('comment', comment);
-      reviewData.append('rating', rating);
-      reviewData.append('userId', userId);
+//     try {
+//       const reviewData = new FormData();
+//       reviewData.append('comment', comment);
+//       reviewData.append('rating', rating);
+//       reviewData.append('userId', userId);
 
-      // Append each image to the FormData
-      for (let i = 0; i < images.length; i++) {
-        reviewData.append('image', images[i]);
-      }
+//       // Append each image to the FormData
+//       for (let i = 0; i < images.length; i++) {
+//         reviewData.append('image', images[i]);
+//       }
   
 
-      // Send review data to the backend API
-      const res = await axios.post('http://localhost:5000/review', reviewData, {
-        headers: {
-            'Content-Type': 'multipart/form-data', // Set the content type as multipart/form-data
-          },
-      });
+//       // Send review data to the backend API
+//       const res = await axios.post('http://localhost:5000/review', reviewData, {
+//         headers: {
+//             'Content-Type': 'multipart/form-data', // Set the content type as multipart/form-data
+//           },
+//       });
 
-      // Handle success or show notification
+//       // Handle success or show notification
 
-      // Reset form fields
-      setUserId('')
-      setComment('');
-      setRating(0);
-      setImages([]);
-      console.log(res)
-    } catch (error) {
-      console.error(error);
-      // Handle error or show error notification
-    }
-     finally {
-      setIsLoading(false);
-    }
-
-
-};
+//       // Reset form fields
+//       setUserId('')
+//       setComment('');
+//       setRating(0);
+//       setImages([]);
+//       console.log(res)
+//     } catch (error) {
+//       console.error(error);
+//       // Handle error or show error notification
+//     }
+//      finally {
+//       setIsLoading(false);
+//     }
 
 
-    const renderStars = () => {
-        const stars = [];
-        for (let i = 1; i <= MAX_RATING; i++) {
-          stars.push(
-            <span
-              key={i}
-              className={`star ${rating >= i ? 'filled' : ''}`}
-              onClick={() => handleRatingChange(i)}
-            >
-              &#9733;
-            </span>
-          );
-        }
+// };
+
+
+//     const renderStars = () => {
+//         const stars = [];
+//         for (let i = 1; i <= MAX_RATING; i++) {
+//           stars.push(
+//             <span
+//               key={i}
+//               className={`star ${rating >= i ? 'filled' : ''}`}
+//               onClick={() => handleRatingChange(i)}
+//             >
+//               &#9733;
+//             </span>
+//           );
+//         }
         
-        return stars;
-      };
+//         return stars;
+//       };
 
 
 
@@ -315,7 +316,7 @@ useEffect(() => {
 {/* <img src={city.image.url} alt={city.name} className="country-image" /> */}
 <h3 className='city-title'>{city.name}</h3>
 <h3 className='city-des'>{city.Describtion}</h3>
-
+<hr />
 
 <div className="buttonContainer">
   {types.map((type) => {
@@ -341,15 +342,16 @@ useEffect(() => {
 
   {place.map((place) => (
     <div key={place._id} className="placeCard">
-      <Link to={`/place/${place._id}`} className="country-item">
+      <Link to={`/place/${place._id}`} className="country-item-co">
       {place.image.length > 0 && (
         <img src={place.image[0].url} alt={place.name} className="placeImage" />
       )}
 
-
+      <div>
       <h3 className="placeName">{place.name}</h3>
       <p className="placeDescription">{place.Description}</p>
       <p className="placeAddress">Adress : {place.Address}</p>
+      </div>
       </Link>
     </div>
   ))}
@@ -410,50 +412,39 @@ useEffect(() => {
 
 <div className="restaurant-carousel">
       <h2>Restaurants</h2>
+      
       <Slider {...settings}>
         {restaurants.map((restaurant) => (
+          
           <div className="restaurant-card-city" key={restaurant._id}>
             
               {restaurant.image.length > 0 && (
-                <img
+     <img
                   src={restaurant.image[0].url}
                   alt={restaurant.name}
                   className="res-img-city"
                 />
-              )}
+              )}<Link to={`/place/${restaurant._id}`} >
             <div className="res-content-city">
+              
+      
               <h3>{restaurant.name}</h3>
               <p>About : {restaurant.Description}</p>
               <p className='address-city'>Address : {restaurant.Address}</p>
-            </div>
+            </div></Link>
           </div>
+        
+        
         ))}
       </Slider>
+     
     </div>
 
 
-{/* <div className="restaurant-container">
-          <h2>Restaurants</h2>
-          {restaurants.map((restaurant) => (
-            <div className="restaurant-card" key={restaurant._id}>
-              {restaurant.image.length > 0 && (
-                <img
-                  src={restaurant.image[0].url}
-                  alt={restaurant.name}
-                  className="res-img"
-                />
-              )}
-
-              {/* <img src={restaurant.image.url} alt={restaurant.name} className="res-img"/> */}
-              {/* <h3>{restaurant.name}</h3>
-              <p>{restaurant.Description}</p>
-              <p>{restaurant.Address}</p>
-            </div>
-          ))}
-        </div>  */}
 
         <div className="restaurant-container-city">
           <h2 className='hotel-title'>Hotels</h2>
+          
       <Slider {...settings}>
 
           {hotels.map((hotel) => (
@@ -465,13 +456,12 @@ useEffect(() => {
                   className="res-img-city"
                 />
               )}
-
-              {/* <img src={restaurant.image.url} alt={restaurant.name} className="res-img"/> */}
+            <Link to={`/place/${hotel._id}`} >
               <div className="res-content-city">
               <h3>{hotel.name}</h3>
               <p>About : {hotel.Description}</p>
               <p className='address-city'>Address : {hotel.Address}</p>
-            </div>
+            </div></Link>
             </div>
           ))}
           
@@ -482,43 +472,6 @@ useEffect(() => {
 
 
 
-{/* <div>
-      <h2>Post a Review</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="comment">Comment:</label>
-          <textarea id="comment" value={comment} onChange={handleCommentChange} required />
-        </div>
-
-
-
-
-
-        <div>
-          <label htmlFor="rating">Rating:</label>
-          <div className="stars-container">{renderStars()}</div>
-        </div>
-   
-        <div>
-  <label htmlFor="images">Images:</label>
-  <input type="file" id="images" name="file" onChange={handleImage} multiple />
-
-  <div>
-  {images.map((image, index) => (
-    <img key={index} src={URL.createObjectURL(image)} alt={`Image ${index}`} style={{ width: "100px", height: "100px" }} />
-  ))}
-</div>
- 
-</div>
-        <div>
-            <input type='text' value={userId} onChange={(e) => { setUserId(e.target.value)
-            }}></input>
-        </div>
-        <button type="submit" disabled={isLoading}>
-          {isLoading ? 'Posting...' : 'Post Review'}
-        </button>
-      </form>
-      </div> */}
 <Footer />
 
 </div>

@@ -1,8 +1,57 @@
 import React, { useEffect, useState } from 'react';
+import { FaStar } from "react-icons/fa";
 import axios from 'axios';
-const MAX_RATING = 5;
+
+
+const colors = {
+    orange: "#FFBA5A",
+    grey: "#a9a9a9"
+    
+};
 
 const ReviewForm = () => {
+
+
+
+
+
+  const [currentValue, setCurrentValue] = useState(0);
+  const [hoverValue, setHoverValue] = useState(undefined);
+  const stars = Array(5).fill(0)
+
+  const handleClick = value => {
+    setCurrentValue(value)
+  }
+
+  const handleMouseOver = newHoverValue => {
+    setHoverValue(newHoverValue)
+  };
+
+  const handleMouseLeave = () => {
+    setHoverValue(undefined)
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   const [comment, setComment] = useState('');
   const [rating, setRating] = useState(0);
   const [images, setImages] = useState([]);
@@ -104,22 +153,7 @@ const ReviewForm = () => {
 };
 
 
-    const renderStars = () => {
-        const stars = [];
-        for (let i = 1; i <= MAX_RATING; i++) {
-          stars.push(
-            <span
-              key={i}
-              className={`star ${rating >= i ? 'filled' : ''}`}
-              onClick={() => handleRatingChange(i)}
-            >
-              &#9733;
-            </span>
-          );
-        }
-        
-        return stars;
-      };
+
 
 
 
@@ -143,7 +177,55 @@ const ReviewForm = () => {
   
 
   return (
+
+
+
+
     <div>
+
+
+
+
+<div className='container'>
+      <h2> React Ratings </h2>
+      <div className='stars' >
+        {stars.map((_, index) => {
+          return (
+            <FaStar
+              key={index}
+              size={24}
+              onClick={() => handleClick(index + 1)}
+              onMouseOver={() => handleMouseOver(index + 1)}
+              onMouseLeave={handleMouseLeave}
+              color={(hoverValue || currentValue) > index ? colors.orange : colors.grey}
+              style={{
+                marginRight: 10,
+                cursor: "pointer"
+              }}
+            />
+          )
+        })}
+      </div>
+      <textarea
+        placeholder="What's your experience?"
+        className='textarea' 
+      />
+
+      <button className='button' >
+        Submit
+      </button>
+      
+    </div>
+
+
+
+
+
+
+
+
+
+
       <h2>Post a Review</h2>
       <form onSubmit={handleSubmit}>
         <div>
@@ -155,10 +237,6 @@ const ReviewForm = () => {
 
 
 
-        <div>
-          <label htmlFor="rating">Rating:</label>
-          <div className="stars-container">{renderStars()}</div>
-        </div>
    
         <div>
   <label htmlFor="images">Images:</label>

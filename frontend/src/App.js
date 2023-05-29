@@ -16,6 +16,7 @@ import BookingComponent from './Pages/booking';
 import Place from './Pages/place';
 import Hosts from './Pages/hosts';
 import Header from './Pages/Header';
+import ContactUsPage from './Pages/contactUs';
 
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
         <Route path='dash' element={<CreateAdminForm />} />
         <Route path='footer' element={<Footer />} />
         <Route path='header' element={<Header />} />
+        <Route path='contact' element={<ContactUsPage />} />
         <Route path='review' element={<Review />} />
         <Route path='booking' element={<BookingComponent />} />
         <Route path='/host/:hostId' element={<Hosts />} />

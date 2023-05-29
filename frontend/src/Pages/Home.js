@@ -1,6 +1,6 @@
 import "./Home.css";
 import logo from "../images/logo.png";
-import img1 from '../images/h11.jpg'
+import img1 from '../images/im1.jpg'
 import { Link } from "react-router-dom";
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -14,6 +14,7 @@ import Footer from "./Footer";
 
 function Home() {
 
+const [isSignedIn, setIsSignedIn] = useState(false);
 
 
 
@@ -26,7 +27,7 @@ function Home() {
         slidesToShow: 3,
         slidesToScroll: 1,
         autoplay: true,
-        autoplaySpeed: 2000,
+        autoplaySpeed: 9000,
         pauseOnHover: true
       };
 
@@ -115,12 +116,12 @@ useEffect(() => {
             <Link to="/" className="link-item">
               Home
             </Link>
-            <Link to="/contact/" className="link-item">
+            <Link to="/contact" className="link-item">
               Contact us
             </Link>
             <Link to="/signin" className="link-item">
-              Sign in
-            </Link>
+  {isSignedIn ? 'Sign out' : 'Sign in'}
+</Link>
           </div>
         </div>
         
@@ -160,7 +161,7 @@ useEffect(() => {
             <Link to={`/country/${country._id}`} className="country-item">
             <img src={country.image.url} alt={country.name} className="country-image" />
 
-              <p>{country.name}</p>
+              <p className="couName">{country.name}</p>
             </Link>
           </div>
         ))}
@@ -203,46 +204,42 @@ useEffect(() => {
 
 
     <div className="articles-container">
-        <h2>Featured Articles</h2>
+        <h2>Important Things To Know</h2>
+
+
         <div className="article-item">
           <img src={img1} alt="Article 1" className="article-image" />
           <div className="article-content">
-            <h3>Article 1 Title</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum sodales tristique tincidunt.</p>
-            <Link to="/articles/1" className="article-link">Read More</Link>
+            <h3>Advice for travelling </h3>
+            <p>
+Make sure that you:</p>
+<lu>
+<li>get another form of photo ID to take with you</li>
+<li>check the entry requirements before you go - for certain countries your passport must be valid for six months after the date you travel</li>
+<li>make a note of your passport number and take a photo or photocopy of the information page with you and/ or store it securely  </li>
+<li>sign your passport on the page opposite your information page - an unsigned passport is not valid</li>
+<li>fill in the emergency contact details in your passport - this will make it much easier to contact your next of kin if necessary</li>
+<li>keep your passport secure at all times - unless you are required to carry the original document, keep your passport in a safe location</li>
+</lu>
+            <Link to="https://www.nidirect.gov.uk/articles/advice-travelling-abroad" className="article-link">Review More</Link>
           </div>
         </div>
-        <div className="article-item">
+
+
+
+        {/* <div className="article-item">
           <img src={img1} alt="Article 2" className="article-image" />
           <div className="article-content">
             <h3>Article 2 Title</h3>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum sodales tristique tincidunt.</p>
             <Link to="/articles/2" className="article-link">Read More</Link>
           </div>
+          </div> */}
           </div>
-          </div>
 
 
 
-{/* 
-    <div className="reviews-container-all" >
-  <h2 className="reviews-heading-all">Reviews</h2>
-  {reviews.map((review) => (
-    <div key={review.id} className="review-item-all">
-        {review.image.length > 0 && (
-            <img src={review.image[0].url} alt={review.name} className="review-image-all" />
-            
-          )}
-      <div className="review-header=all">
-        <p className="review-author">{review.userId.name}</p>
-        <p className="review-date">{review.createdAt}</p>
-     
-      <p className="review-comment">{review.comment}</p>
-      <hr className="review-divider" />
-      </div>
-    </div>
-  ))}
-</div> */}
+
 
 
 
@@ -263,7 +260,7 @@ useEffect(() => {
   <img src={review.image[0].url} alt={review.name} />
   )}
   <div className="details">
-  <h2>{review.userId.name}</h2>
+  {/* <h2>{review.userId.name}</h2> */}
   <p>{new Date(review.createdAt).toLocaleDateString(undefined, {
           year: 'numeric',
           month: 'long',

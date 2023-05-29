@@ -7,7 +7,6 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Footer from './Footer';
-const MAX_RATING = 5;
 
 
 
@@ -48,7 +47,8 @@ function Hosts() {
   const [comment, setComment] = useState('');
   const [rating, setRating] = useState(0);
   const [images, setImages] = useState([]);
-  const [userId, setUserId] = useState('6453793dbdd7f879fa978bf2');
+  // const [userId, setUserId] = useState('6453793dbdd7f879fa978bf2');
+  // const [userId, setUserId] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [review, setReview] = useState([]);
   const [book, setBook] = useState([]);
@@ -57,6 +57,7 @@ function Hosts() {
     const [hosts, setHosts] = useState([]);
   
     const { hostId } = useParams();
+    const Id = sessionStorage.getItem('id');
 
     useEffect(() => {
 
@@ -83,7 +84,7 @@ function Hosts() {
             const { data } = response;
             setReview(data);
           
-            console.log(data, "im res");
+            console.log(data, "im resssss");
   
           } catch (error) {
             console.error(error);
@@ -167,7 +168,7 @@ const handleSubmit = async (event) => {
     const reviewData = new FormData();
     reviewData.append('comment', comment);
     reviewData.append('rating', rating);
-    reviewData.append('userId', userId);
+    reviewData.append('userId', Id);
     reviewData.append('hostId', hostId);
 
     // Append each image to the FormData
@@ -186,7 +187,7 @@ const handleSubmit = async (event) => {
     // Handle success or show notification
 
     // Reset form fields
-    setUserId('')
+    // setUserId('')
     setComment('');
     setRating(0);
     setImages([]);
@@ -203,25 +204,8 @@ const handleSubmit = async (event) => {
 };
 
 
-  // const renderStars = () => {
-  //     const stars = [];
-  //     for (let i = 1; i <= MAX_RATING; i++) {
-  //       stars.push(
-  //         <span
-  //           key={i}
-  //           className={`star ${rating >= i ? 'filled' : ''}`}
-  //           onClick={() => handleRatingChange(i)}
-  //         >
-  //           &#9733;
-  //         </span>
-  //       );
-  //     }
-      
-  //     return stars;
-  //   };
 
 
-      
 
   return (
     <>
@@ -240,6 +224,7 @@ const handleSubmit = async (event) => {
   </div>
 
 
+<hr />
 
 
 
@@ -248,48 +233,6 @@ const handleSubmit = async (event) => {
 
 
 
-
-
-
-
-
-
-  <div className="main-host">
-    <p className='section-heading-host'>Reviews</p>
-<Slider {...settings}>
-
-
-{review.map((review) => (
-<div key={review.id} className="card-host">
-{review.image.length > 0 && (
-  <img src={review.image[0].url} alt={review.name} />
-  )}
-  <div className="details-host">
-  <h2>{review.userId.name}</h2>
-  <p>{new Date(review.createdAt).toLocaleDateString(undefined, {
-          year: 'numeric',
-          month: 'long',
-          day: 'numeric',
-        })}</p>
-              <p >{review.comment}</p></div>
-
-</div>
-))}
-</Slider>
-</div>
-
-
-
-
-{/* <div className="user-list-section">
-  <h2 className="section-heading">Reviews</h2>
-  {review.map((review) => (
-    <div className="restaurant-card-host" key={review._id}>
-      <p className="review-author-host">{review.userId.name}</p>
-      <p className="review-comment-host">{review.comment}</p>
-    </div>
-  ))}
-</div> */}
 
 
 
@@ -314,10 +257,57 @@ const handleSubmit = async (event) => {
 
 
 
+<p className='section-heading-host'>Reviews</p>
+
+<div className="main">
+<Slider {...settings}>
+
+
+{review.map((review) => (
+<div key={review.id} class="card">
+{review.image.length > 0 && (
+  <img src={review.image[0].url} alt={review.name} />
+  )}
+  <div className="details">
+  <h2>{review && review.userId && review.userId.name}</h2>
+  <p>{new Date(review.createdAt).toLocaleDateString(undefined, {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+        })}</p>
+              <p >{review.comment}</p></div>
+
+</div>
+))}
+</Slider>
+</div>
 
 
 
 
+{/* <div className="main-host">
+    <p className='section-heading-host'>Reviews</p>
+<Slider {...settings}>
+
+
+{review.map((review) => (
+<div key={review.id} className="card-host">
+{review.image.length > 0 && (
+  <img src={review.image[0].url} alt={review.name} />
+  )}
+  <div className="details-host">
+  <h2>{review.userId.name}</h2>
+  <p>{new Date(review.createdAt).toLocaleDateString(undefined, {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+        })}</p>
+              <p >{review.comment}</p></div>
+
+</div>
+))}
+</Slider>
+</div> */}
 
 <div className="post-review-section">
   <h2 className="section-heading">Post a Review</h2>
@@ -326,17 +316,7 @@ const handleSubmit = async (event) => {
       <label htmlFor="comment" className="form-label">Comment:</label>
       <textarea id="comment" value={comment} onChange={handleCommentChange} required className="form-textarea" />
     </div>
-    <div>
-      <label htmlFor="rating" className="form-label">Rating:</label>
-      <div class="rate">
-        <a href="#!" class="active">★</a>
-        <a href="#!" class="active">★</a>
-        <a href="#!" class="active">★</a>
-        <a href="#!">★</a>
-        <a href="#!">★</a>
-      </div>
-      {/* <div className="stars-container">{renderStars()}</div> */}
-    </div>
+ 
     <div>
       <label htmlFor="images" className="form-label">Images:</label>
       <input type="file" id="images" name="file" onChange={handleImage} multiple className="form-file-input" />
@@ -346,10 +326,10 @@ const handleSubmit = async (event) => {
         ))}
       </div>
     </div>
-    <div>
+    {/* <div>
       <label htmlFor="userId" className="form-label">User ID:</label>
       <input type="text" id="userId" value={userId} onChange={(e) => setUserId(e.target.value)} className="form-input" />
-    </div>
+    </div> */}
     <button type="submit" disabled={isLoading} className="submit-button">
       {isLoading ? 'Posting...' : 'Post Review'}
     </button>

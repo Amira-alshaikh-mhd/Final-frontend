@@ -1,0 +1,92 @@
+/* contactUsStyles.css */
+
+
+
+
+@keyframes imageFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+
+
+
+
+
+.background{
+  background-image: url('../images/tyler-franta-iusJ25iYu1c-unsplash.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 55rem;
+  margin-top: -4rem;
+  margin-bottom: -4rem;
+
+}
+
+
+.contact-container {
+   height: auto;
+    border-radius: 5px;
+    /* margin-top: 4rem; */
+    margin-left: 41rem;
+    margin-top: 4rem;
+    padding-top: 8rem;
+    
+  }
+  
+  .title-contact {
+    font-size: 3rem;
+    margin-bottom: 4rem;
+    font-family:'Kite One' ;
+    color: #fc3b0b;
+    margin-left: 2rem;
+    
+  }
+  
+  
+  
+  .form-group {
+    
+    /* position: relative;
+    top:1rem;
+    left: 1rem; */
+  }
+  
+  .label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .input,
+  .textarea {
+    width: 100%;
+    padding: 8px;
+    border-radius: 3px;
+    border: 1px solid #000000;
+  }
+  
+  .textarea {
+    height: 100px;
+    background: transparent;
+  }
+  
+  .submit-button {
+    background-color: #fc3b0b;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  
+  .submit-button:hover {
+    background-color: #0056b3;
+  }
+  

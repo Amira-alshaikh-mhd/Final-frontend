@@ -313,7 +313,7 @@ useEffect(() => {
 
 
             <img src={city.image? city.image.url : null} alt={city.name} className='city-img' />
-{/* <img src={city.image.url} alt={city.name} className="country-image" /> */}
+
 <h3 className='city-title'>{city.name}</h3>
 <h3 className='city-des'>{city.Describtion}</h3>
 <hr />
@@ -429,7 +429,7 @@ useEffect(() => {
               
       
               <h3>{restaurant.name}</h3>
-              <p>About : {restaurant.Description}</p>
+              <p className='res-des-1'>About : {restaurant.Description}</p>
               <p className='address-city'>Address : {restaurant.Address}</p>
             </div></Link>
           </div>
@@ -448,7 +448,7 @@ useEffect(() => {
       <Slider {...settings}>
 
           {hotels.map((hotel) => (
-            <div className="restaurant-card-city" key={hotel._id}>
+            <div className="restaurant-card-city-h" key={hotel._id}>
               {hotel.image.length > 0 && (
                 <img
                   src={hotel.image[0].url}
@@ -459,7 +459,7 @@ useEffect(() => {
             <Link to={`/place/${hotel._id}`} >
               <div className="res-content-city">
               <h3>{hotel.name}</h3>
-              <p>About : {hotel.Description}</p>
+              <p className='res-des-1'>About : {hotel.Description}</p>
               <p className='address-city'>Address : {hotel.Address}</p>
             </div></Link>
             </div>

@@ -7,20 +7,35 @@
   margin-top: 4rem;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .host-list-host {
   margin-top: 2rem;
   text-align: center;
-  width: 36%;
+  /* width: 36%; */
   height: 22rem;
-  /* border: 2px solid #333333; */
-  position: relative;
-  right: -34%;
+
+  /* position: relative; */
+  /* right: -34%; */
   margin-bottom: 17rem;
 }
 
 .host-item-host {
   display: flex;
-  justify-content:space-around;
+  justify-content:center;
   align-items: center;
   margin-bottom: 5rem;
   height: 100%;
@@ -28,18 +43,21 @@
 }
 
 .host-image-host {
-  width: 33rem;
-  height: 33rem;
+  max-width: 33%;
+  width: 36%;
+  height: auto;
   border-radius: 1%;
   object-fit: cover;
-  margin-left: -10rem;
-  margin-right: 34rem;
-  margin-top: auto;
+  margin:  auto;
+  margin-bottom: 1rem;
 }
 
 .host-details-host {
   display: flex;
   flex-direction: column;
+  margin: auto;
+  max-width: 90%;
+  width: 90%;
 }
 
 .host-name-host {
@@ -67,31 +85,44 @@
   font-family:'Kite One' ;
 
 }
-/*   
-  .review-author-host {
-    font-size: 16px;
-    font-weight: bold;
-  }
-  
-  .review-comment-host {
-    font-size: 14px;
-    color: #777777;
-    margin-top: 5px;
-  }
-   */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .user-list-section-host {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0 auto;
 }
 
 .restaurant-card-host {
   background-color: #f5f5f5;
   padding: 20px;
   border-radius: 5px;
-  margin-bottom: 20px;
-  margin-left: 3rem;
+  /* margin-bottom: 20px;
+  margin-left: 3rem; */
   font-family:'Kite One' ;
+  margin: 0 auto;
+  max-width: 22rem;
+  width: 22rem;
+  margin-bottom: 1rem;
 
 }
 
@@ -119,14 +150,17 @@
 }
 
 .post-review-section {
-  margin-top: 40px;
+  /* margin-top: 40px; */
   border: 2px solid rgb(167, 157, 157);
   box-shadow: 3px 3px 15px 3px gray;
-  width: 31rem;
-  position: sticky;
-  left: 42rem;
+  position: relative;
+  /* left: 42rem; */
   padding: 2rem;
-  margin-bottom: 3rem;
+  margin: auto;
+  max-width: 50rem;
+  width: 31rem;
+
+  /* margin-bottom: 3rem; */
 }
 
 
@@ -277,4 +311,42 @@ a {
 .details-host h2 {
   font-size: 2rem;
   font-family:'Kite One' ;
+}
+
+@media screen and (max-width: 800px) {
+
+  .host-item-host{
+    flex-direction: column;
+    height: auto;
+  }
+
+  .host-name-host {
+    font-size: 2rem;
+    margin-top: 2rem;
+}
+.post-review-section {
+  margin-top: 4rem;
+}
+}
+
+
+@media screen and (max-width: 550px) {
+
+  .post-review-section {
+    margin-top: 4rem;
+   
+    width: 24rem;
+  }
+}
+
+
+
+@media screen and (max-width: 420px) {
+  .post-review-section {
+   margin-top: 4rem;
+    width: 17rem;
+  }
+  .form-file-input {
+    font-size: 12px;
+  }
 }

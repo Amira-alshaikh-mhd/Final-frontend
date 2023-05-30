@@ -1,6 +1,7 @@
 .sign-in-container {
-  background-image: url("../images/header.jpg");
+  background-image: url("../images/s2.jpg");
   background-position:1dvh;
+  background-size: cover;
 
   display: flex;
   /* flex-direction: row; */
@@ -127,10 +128,10 @@ input {
   font-family: "Kite One";
 
   border: none;
-  border-bottom: 2px solid #555;
+  border-bottom: 2px solid #050505;
   background-color: transparent;
   width: 100%;
-  color: #555;
+  color: #050505;
   transition: border-bottom-color 0.3s ease;
 }
 
@@ -203,34 +204,27 @@ input:focus {
   font-weight: bold;
 }
 
-/* 
-  .log-form{
-    position: absolute;
-    top: 0;
-    left: 50%;
-    width: 50%;
-    height: 100%;
-    overflow: hidden;
-    transition: transform 0.6s ease-in-out;
-    z-index: 100;
 
-  }
-   */
 @media (max-width: 600px) {
   .form-group {
     width: 100%;
   }
 
   .sign-in-image {
-    /* margin-top: 12rem; */
-    /* margin-right: 7rem; */
-    /* max-width: 100px; */
+    margin-top: 12rem;
+    margin-right: -2rem;
+    max-width: 141px;
+
   }
-  .sign-in-container {
-    /* display: block; */
-    /* flex-direction: column; */
-  }
-  .form-container {
-    /* margin-top: 2rem; */
-  }
+
+
+
+.sign-title {
+  font-size: 34px;
+  font-family: "Kite One";
+  margin-bottom: 102px;
+  margin-top: 7rem;
+
+}
+  
 }

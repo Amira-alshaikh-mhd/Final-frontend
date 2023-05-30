@@ -69,6 +69,8 @@
   font-size: 3rem;
 
   font-family: "Kite One";
+  animation: imageFadeIn 1s ease;
+
 }
 
 .title2-co {
@@ -78,10 +80,14 @@
   margin-left: 45%;
   font-size: 2rem;
   font-family: "Kite One";
+  animation: imageFadeIn 4s ease;
+
 }
 .memo-co {
   color: #fc3b0b;
   padding-left: 0.5rem;
+  animation: imageFadeIn 3s ease;
+
 }
 
 

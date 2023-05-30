@@ -16,18 +16,38 @@ function Hosts() {
 
 
 
-
   var settings = {
     dots: true,
     infinite: true,
     slidesToShow: 3,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 2000,
-    pauseOnHover: true
+    autoplaySpeed: 9000,
+    pauseOnHover: true,
+    responsive: [
+      {
+        breakpoint: 900,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+      {
+        breakpoint: 730,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+      {
+        breakpoint: 1400,
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+      ],
+
+  
+    
   };
-
-
 
 
 

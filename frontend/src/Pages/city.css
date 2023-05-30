@@ -34,6 +34,7 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 20px;
   transition: transform 0.3s;
+  
 }
 
 .placeCard:hover {
@@ -66,17 +67,27 @@
   color: #3b8fdf;
 }
 
+
+
+
+
 .buttonContainer {
   display: flex;
-  /* flex-direction: column; */
   justify-content: space-between;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
   background-color: hsl(0, 0%, 100%);
   box-shadow: 2px 2px 9px 0px #eecec6;
   border-radius: 22px;
-  width: 48rem;
-  margin-left: 35rem;
+  width: 50%;
+  /* margin-left: 39rem; */
+  margin: 0 auto;
 }
+
+/* Media Queries for Responsive Styling */
+
+
+
+
 
 .button {
   padding: 10px 20px;
@@ -113,23 +124,22 @@ h1 {
   color: #333333;
   font-family: "Kite One";
 }
+
+
+
 .book-div {
   margin-top: 22rem;
   display: flex;
   justify-content: space-between;
-  /* position: static; */
-  /* left: 99rem; */
-  /* background-image: url('../images/img2.jpg'); */
+ 
 }
 
 
 
 
+
 .country-item-co {
-  /* display:flex;
-  flex-direction: column;
-  justify-content: space-between; */
-  /* margin-bottom: 3rem; */
+ 
   width: 20rem;
   padding: 10px;
   text-align: center;
@@ -228,6 +238,16 @@ h1 {
   text-align: center;
 }
 
+
+
+.restaurant-container-city {
+  margin-top: 9rem;
+  text-align: center;
+}
+
+
+
+
 .restaurant-carousel h2 {
   font-size: 4rem;
   margin-bottom: 9rem;
@@ -236,14 +256,18 @@ h1 {
   font-family: "Kite One";
 }
 
+
+
 .hotel-title {
-  text-align: center;
   font-size: 4rem;
-  margin-bottom: 5rem;
+  margin-bottom: 9rem;
   margin-top: 12rem;
   color: #fc3b0b;
   font-family: "Kite One";
 }
+
+
+
 
 .restaurant-card-city {
   display: flex;
@@ -255,7 +279,27 @@ h1 {
   box-shadow: 3px 3px 24px 3px gray;
   margin-bottom: 8rem;
 }
+
+
+.restaurant-card-city-h {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 22rem;
+  background-color: #fcf9f9;
+  border-radius: 8px;
+  box-shadow: 3px 3px 24px 3px gray;
+  margin-bottom: 8rem;
+}
+
+
+
+
 .restaurant-card-city a{
+  text-decoration: none;
+}
+
+.restaurant-card-city-h a{
   text-decoration: none;
 }
 
@@ -268,9 +312,13 @@ h1 {
 }
 
 .res-content-city {
-  text-align: center;
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  /* text-align: center; */
   position: relative;
-  top: -19rem;
+  top: -21rem;
   font-size: 18px;
   margin-bottom: 5px;
   font-family: "Kite One";
@@ -278,9 +326,9 @@ h1 {
 
 .res-content-city h3 {
   font-size: 18px;
-  font-size: 33px;
+ 
   margin-bottom: 90px;
-  margin-top: -85px;
+  margin-top: -61px;
   color: #fc3b0b;
   font-family: "Kite One";
 }
@@ -293,3 +341,146 @@ h1 {
   font-size: 14px;
   /* margin-bottom: 5px; */
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 1000px){
+
+
+.book-div img {
+  width: 20rem;
+}
+.res-content-city {
+  right: -18%;
+}
+
+}
+
+
+@media (max-width: 750px){
+  .res-img-city {
+    height: 26rem;
+    width: 14rem;
+  }
+  .res-content-city {
+ 
+    top: -19rem;
+  }
+
+}
+
+
+
+@media (max-width: 650px){
+
+.book-div  {
+  flex-direction: column;
+   
+
+}
+
+.book-div img {
+  width: 90%;
+}
+
+.bookingFormContainer{
+  margin-left: 6%;
+  max-width: 90% !important;
+  width: 90%;
+
+}
+
+.book-div img {
+ 
+  margin-left: 6%;
+}
+.buttonContainer {
+
+  width: auto
+}
+}
+
+
+
+
+@media (max-width: 650px){
+
+.res-content-city h3 {
+  
+  font-size: 26px;
+}
+
+.res-content-city {
+  
+  font-size: 13px;
+}
+.res-img-city {
+  height: 26rem;
+  width: 11rem;
+}
+.hotel-title {
+  font-size: 3rem;
+}
+}
+
+
+@media (max-width: 420px){
+
+
+  .res-img-city {
+    height: 22rem;
+    width: 8rem;
+    margin-bottom: 5rem;
+}
+.restaurant-carousel h2 {
+  font-size: 3rem;
+}
+.address-city {
+  margin-top: 3rem;
+
+}
+
+
+@media (max-width: 380px){
+.book-div img {
+    margin-left: 1rem;
+}
+
+.button {
+  padding: 11px 17px;
+  color: #020202;
+    font-size: 18px;
+}
+.res-des-1 {
+  max-width: 9rem;
+  word-wrap: break-word;
+  margin-left: 27%;
+}
+}
+
+
+
+
+
+
+
+
+
+}
+.res-des-1{
+  max-width: 12rem;
+  margin-left: 35%;
+}
+
+
+

@@ -2,7 +2,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom"
-import image from '../images/logo.png'
+import image from '../images/logo.png';
+import { Link } from "react-router-dom";
+
 
 
 const RegistrationForm = () => {
@@ -24,8 +26,9 @@ const RegistrationForm = () => {
         password,
         phone,
       });
+      alert("user created");
       console.log('Registration successful:', response.data);
-                navigate("/", { replace: true });
+                navigate("/Signin", { replace: true });
 
       // Optionally, you can redirect the user to another page upon successful registration
     } catch (error) {
@@ -38,7 +41,9 @@ const RegistrationForm = () => {
 
     <div className="sign-in-container">
     <div className="image-container">
+    <Link to="/" className="link-item">
       <img src={image} alt="Page Title" className="sign-in-image" />
+      </Link>
     </div>
     <div className="form-container">
       <h2 className='sign-title'>Registration</h2>

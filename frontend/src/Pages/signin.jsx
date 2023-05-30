@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom"
 import { toast, ToastContainer } from 'react-toastify';
 import signInImage from '../images/logo.png'
 import { Link } from "react-router-dom";
+import {useCookies} from "react-cookie";
 
 
 
@@ -12,10 +13,13 @@ import { Link } from "react-router-dom";
 const SignInPage = () => {
     const navigate = useNavigate();
 
+const [_, setCookies] = useCookies(["access_token"])
+
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -27,17 +31,17 @@ const SignInPage = () => {
 
     try {
       const response = await axios.post('http://localhost:5000/user/login', payload);
+      setCookies("access_token", response.data.token)
 
-
-      if (response.data.role === "superadmin") {
+      if (response.data.role === "superadmin" || response.data.role === "admin") {
         sessionStorage.setItem('id', response.data.user);
-        sessionStorage.setItem('token', response.data.token);
+        // sessionStorage.setItem('token', response.data.token);
         sessionStorage.setItem('role', response.data.role);
 
         navigate("/Dashboard", { replace: true });
     } else if (response.data.role === "user") {
         sessionStorage.setItem('id', response.data.user);
-        sessionStorage.setItem('token', response.data.token);
+        // sessionStorage.setItem('token', response.data.token);
         sessionStorage.setItem('role', response.data.role);
         sessionStorage.setItem('name', response.data.name);
         // sessionStorage.setItem('email', response.data.email);
@@ -49,6 +53,53 @@ const SignInPage = () => {
     }
 
 
+
+
+      if (response.status === 200) {
+        const  token  = response.data;
+        console.log(token, 'dssd');
+        
+        navigate("/", { replace: true });
+        
+        // Handle successful login, e.g., store the token in local storage or state
+      } else {
+        const { message } = response.data;
+        setError(message);
+      }
+      console.log(response.data.user)
+
+    } catch (error) {
+      console.log(error);
+      if (error.response && error.response.status === 401) {
+        setError('Invalid credentials');
+      } else {
+        setError('Internal server error');
+      }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+    try {
+      const response = await axios.post('http://localhost:5000/host/login', payload);
+
+
+      setCookies("access_token", response.data.token)
+      
+        sessionStorage.setItem('id', response.data.host);
+        sessionStorage.setItem('token', response.data.token);
+      
+
+        navigate("/bookings", { replace: true });
 
 
       if (response.status === 200) {
@@ -71,12 +122,42 @@ const SignInPage = () => {
         setError('Internal server error');
       }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   };
 
   return (
     <div className="sign-in-container">
     <div className="image-container">
+    <Link to="/" className="link-item">
       <img src={signInImage} alt="Sign In" className="sign-in-image" />
+      </Link>
     </div>
     <div className="form-container">
       <h2 className='sign-title'>Sign In</h2>

@@ -34,6 +34,8 @@
   font-size: 3rem;
   /* font-family: 'Kaushan Script', cursive; */
   font-family: "Kite One";
+  animation: imageFadeIn 1s ease;
+
 }
 
 .title2 {
@@ -43,10 +45,14 @@
   margin-left: 18%;
   font-size: 2rem;
   font-family: "Kite One";
+  animation: imageFadeIn 2s ease;
+
 }
 .memo {
   color: #fc3b0b;
   padding-left: 0.5rem;
+  animation: imageFadeIn 3s ease;
+
 }
 
 .link-item {
@@ -352,7 +358,7 @@ hr {
   min-height: 50vh;
   
 
-  width: 98%;
+  width: 97%;
  
   
 }
@@ -470,11 +476,21 @@ right: 15%;
 
 }
 }
+
+@media screen and (max-width: 1500px) {
+
+.card {
+  width: 26rem !important;
+  margin-left: 3.5rem;
+}
+}
+
 @media screen and (max-width: 1400px) {
 
   .card {
     margin-left: 15%;
 }
+
 }
 
 @media screen and (max-width: 1250px){
@@ -512,7 +528,7 @@ right: 15%;
     margin: 0 -1rem;
   }
   .card {
-    width: 25rem !important;
+    width: 23rem !important;
   }
 }
 
@@ -521,10 +537,18 @@ right: 15%;
     font-size: 1rem;
   }
   .card {
-    margin-left: 8rem;
+    margin-left: 5rem;
     width: 37rem !important;
 }
 
+}
+@media screen and (max-width: 800px) {
+
+
+.card img {
+ 
+  margin-right: 14rem;
+}
 }
 
 @media screen and (max-width: 768px) {
@@ -675,6 +699,8 @@ right: 15%;
     margin: 8px 0;
     padding: 8px;
     text-align: justify;
+    word-wrap: break-word;
+    max-width: 17rem;
   }
   .article-content {
     
@@ -717,6 +743,10 @@ right: 15%;
 .logo {
   width: 7rem;
 }
+.details {
+  
+  right: -5%;
+}
 }
 
 
@@ -727,4 +757,9 @@ right: 15%;
  
   margin-left: 9%;
 }
+
+.card p {
+
+    max-width: 14rem;
+  }
 }

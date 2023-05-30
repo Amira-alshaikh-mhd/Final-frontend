@@ -11,7 +11,6 @@ import Footer from "./Footer";
 
 
 
-
 function Home() {
 
 const [isSignedIn, setIsSignedIn] = useState(false);
@@ -28,33 +27,36 @@ const [isSignedIn, setIsSignedIn] = useState(false);
         slidesToScroll: 1,
         autoplay: true,
         autoplaySpeed: 9000,
-        pauseOnHover: true
+        pauseOnHover: true,
+        responsive: [
+          {
+            breakpoint: 900,
+            settings: {
+              slidesToShow: 1,
+            },
+          },
+          {
+            breakpoint: 730,
+            settings: {
+              slidesToShow: 1,
+            },
+          },
+          {
+            breakpoint: 1400,
+            settings: {
+              slidesToShow: 2,
+            },
+          },
+          ],
+
+      
+        
       };
 
+     
+      
 
 
-
-  // const settings = {
-  //   dots: true,
-  //   infinite: true,
-  //   speed: 900,
-  //   slidesToShow: 1,
-  //   slidesToScroll: 1,
-  //   responsive: [
-  //     {
-  //       breakpoint: 768,
-  //       settings: {
-  //         slidesToShow: 1,
-  //       },
-  //     },
-  //     {
-  //       breakpoint: 480,
-  //       settings: {
-  //         slidesToShow: 1,
-  //       },
-  //     },
-  //   ],
-  // };
 
 
 
@@ -227,14 +229,7 @@ Make sure that you:</p>
 
 
 
-        {/* <div className="article-item">
-          <img src={img1} alt="Article 2" className="article-image" />
-          <div className="article-content">
-            <h3>Article 2 Title</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum sodales tristique tincidunt.</p>
-            <Link to="/articles/2" className="article-link">Read More</Link>
-          </div>
-          </div> */}
+  
           </div>
 
 
@@ -260,7 +255,7 @@ Make sure that you:</p>
   <img src={review.image[0].url} alt={review.name} />
   )}
   <div className="details">
-  {/* <h2>{review.userId.name}</h2> */}
+  <h2>{review && review.userId && review.userId.name}</h2>
   <p>{new Date(review.createdAt).toLocaleDateString(undefined, {
           year: 'numeric',
           month: 'long',
@@ -310,45 +305,3 @@ export default Home;
 
 
 
-
-
-
-
-// import React, { useEffect, useState } from 'react';
-// import axios from 'axios';
-// import { Link } from "react-router-dom";
-
-
-// const CountryList = () => {
-//   const [countries, setCountries] = useState([]);
-
-//   useEffect(() => {
-//     const fetchData = async () => {
-//       try {
-//         const response = await axios.get('http://localhost:5000/country');
-//         setCountries(response.data);
-//       } catch (error) {
-//         console.log(error);
-//       }
-//     };
-
-//     fetchData();
-//   }, []);
-
-//   return (
-//     <div className="country-flex">
-//       {countries.map((country) => (
-//         <div key={country._id}>
-//           <img src={country.image.url} alt={country.name} className="country-image" />
-//           <p>
-//             <Link to={`/country/${country._id}`} className="country-item">
-//               {country.name}
-//             </Link>
-//           </p>
-//         </div>
-//       ))}
-//     </div>
-//   );
-// };
-
-// export default CountryList;

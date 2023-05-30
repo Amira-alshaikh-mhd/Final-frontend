@@ -183,14 +183,14 @@ const BookingComponent = () => {
   <p>Total Price: {totalPrice}</p>
 </div>
         <br />
-        <label htmlFor="userId">User ID:</label>
+        {/* <label htmlFor="userId">User ID:</label>
         <input
           type="text"
           name="userId"
           id="userId"
           value={bookingData.userId}
           onChange={handleInputChange}
-        />
+        /> */}
         <br />
         <button type="submit">Book</button>
       </form>

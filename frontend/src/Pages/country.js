@@ -96,9 +96,7 @@ const Country = () => {
         setHotels(hotels);
         console.log(restaurants, "im res");
 
-        // const filteredData = data.filter(obj => obj.typeId === "6464d8ff98ace34ef4eb6520");
-        //  console.log(filteredData)
-        // setRestaurants(filteredData)
+      
       } catch (error) {
         console.error(error);
       }
@@ -142,25 +140,6 @@ const Country = () => {
 
 
 
-      {/* <div key={place._id}>
-      {place.image.length > 0 && (
-        <img src={place.image[0].url} alt={place.name} className="placeImage" />
-      )}
-
-      </div> */}
-
-
-
-
-
-
-
-
-
-
-
-
-      {/* <div className="country-container"> */}
       
         
         <div className="coun-city-container">
@@ -176,7 +155,7 @@ const Country = () => {
               
             
               <h3>{city.name}</h3></Link>
-              {/* <p>{city.description}</p> */}
+              
             </div>
           ))}
         </div>
@@ -217,7 +196,7 @@ const Country = () => {
                 />
               )}
 
-              {/* <img src={restaurant.image.url} alt={restaurant.name} className="res-img"/> */}
+             
               <div className="res-des">
                 <h3>{restaurant.name}</h3>
               <p>{restaurant.Description}</p>
@@ -228,21 +207,21 @@ const Country = () => {
           </Slider>
         </div>
 
-        <div className="restaurant-container">
+        <div className="restaurant-container-h">
           <h2>Hotels</h2>
           <Slider {...settings}>
           {hotels.map((hotel) => (
-            <div className="coun-restaurant-card" key={hotel._id}>
+            <div className="coun-restaurant-card-h" key={hotel._id}>
               {hotel.image.length > 0 && (
                 <img
                   src={hotel.image[0].url}
                   alt={hotel.name}
-                  className="res-img"
+                  className="res-img-h"
                 />
               )}
 
-              {/* <img src={restaurant.image.url} alt={restaurant.name} className="res-img"/> */}
-              <div className="res-des">
+              
+              <div className="res-des-h">
 
               <h3>{hotel.name}</h3>
               <p>{hotel.Description}</p>
@@ -254,7 +233,7 @@ const Country = () => {
         </div>
 
 
-      {/* </div> */}
+    
       <Footer />
     </div>
     

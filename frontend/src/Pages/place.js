@@ -40,11 +40,12 @@ const Place = () => {
   const [rating, setRating] = useState(0);
   const [images, setImages] = useState([]);
   const [review, setReview] = useState([]);
-  const [userId, setUserId] = useState('6453793dbdd7f879fa978bf2');
+  // const [userId, setUserId] = useState('6453793dbdd7f879fa978bf2');
   const [isLoading, setIsLoading] = useState(false);
   const [place, setPlace] = useState([]);
 
   const placeId = useParams();
+  const Id = sessionStorage.getItem('id');
 
 
   useEffect(() => {
@@ -142,7 +143,7 @@ const Place = () => {
       const reviewData = new FormData();
       reviewData.append('comment', comment);
       reviewData.append('rating', rating);
-      reviewData.append('userId', userId);
+      reviewData.append('userId', Id);
       reviewData.append('placeId', placeId.placeId);
 
       // Append each image to the FormData
@@ -161,7 +162,7 @@ const Place = () => {
       // Handle success or show notification
 
       // Reset form fields
-      setUserId('')
+     
       setComment('');
       setRating(0);
       setImages([]);
@@ -261,29 +262,7 @@ return(
 
 
 
-      {/* <div className="main-host">
-    <p className='section-heading-host'>Reviews</p>
-<Slider {...settings}>
 
-
-{review.map((review) => (
-<div key={review.id} className="card-host">
-{review.image.length > 0 && (
-  <img src={review.image[0].url} alt={review.name} />
-  )}
-  <div className="details-host">
-  <h2>{review.userId.name}</h2>
-  <p>{new Date(review.createdAt).toLocaleDateString(undefined, {
-          year: 'numeric',
-          month: 'long',
-          day: 'numeric',
-        })}</p>
-              <p >{review.comment}</p></div>
-
-</div>
-))}
-</Slider>
-</div> */}
 
 
 
@@ -300,17 +279,7 @@ return(
       <label htmlFor="comment" className="form-label">Comment:</label>
       <textarea id="comment" value={comment} onChange={handleCommentChange} required className="form-textarea" />
     </div>
-    {/* <div>
-      <label htmlFor="rating" className="form-label">Rating:</label>
-      <div class="rate">
-        <a href="#!" class="active">★</a>
-        <a href="#!" class="active">★</a>
-        <a href="#!" class="active">★</a>
-        <a href="#!">★</a>
-        <a href="#!">★</a>
-      </div>
-      
-    </div> */}
+  
     <div>
       <label htmlFor="images" className="form-label">Images:</label>
       <input type="file" id="images" name="file" onChange={handleImage} multiple className="form-file-input" />
@@ -320,10 +289,7 @@ return(
         ))}
       </div>
     </div>
-    <div>
-      <label htmlFor="userId" className="form-label">User ID:</label>
-      <input type="text" id="userId" value={userId} onChange={(e) => setUserId(e.target.value)} className="form-input" />
-    </div>
+ 
     <button type="submit" disabled={isLoading} className="submit-button">
       {isLoading ? 'Posting...' : 'Post Review'}
     </button>

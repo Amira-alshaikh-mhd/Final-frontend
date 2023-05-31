@@ -75,7 +75,7 @@ const Place = () => {
 
         const fetchPlace = async () => {
           try {
-            const res = await axios.get(`http://localhost:5000/place/${placeId.placeId}`);
+            const res = await axios.get(`https://trip-trail.onrender.com/place/${placeId.placeId}`);
             setPlace(res.data);
             console.log(res.data);
           } catch (error) {
@@ -95,7 +95,7 @@ const Place = () => {
       const fetchReview = async () => {
         try {
           const response = await axios.get(
-            `http://localhost:5000/review/byplace/${placeId.placeId}`
+            `https://trip-trail.onrender.com/review/byplace/${placeId.placeId}`
           );
           const { data } = response;
           setReview(data);
@@ -176,7 +176,7 @@ const Place = () => {
   
 
       // Send review data to the backend API
-      const res = await axios.post('http://localhost:5000/review', reviewData, {
+      const res = await axios.post('https://trip-trail.onrender.com/review', reviewData, {
         headers: {
             'Content-Type': 'multipart/form-data', // Set the content type as multipart/form-data
           },
@@ -202,22 +202,10 @@ const Place = () => {
 };
 
 
-    const renderStars = () => {
-        const stars = [];
-        for (let i = 1; i <= MAX_RATING; i++) {
-          stars.push(
-            <span
-              key={i}
-              className={`star ${rating >= i ? 'filled' : ''}`}
-              onClick={() => handleRatingChange(i)}
-            >
-              &#9733;
-            </span>
-          );
-        }
-        
-        return stars;
-      };
+  
+
+const isUserSignedIn = !Id;
+
 
 return(
     <>
@@ -300,12 +288,12 @@ return(
   <form onSubmit={handleSubmit} className="review-form">
     <div>
       <label htmlFor="comment" className="form-label">Comment:</label>
-      <textarea id="comment" value={comment} onChange={handleCommentChange} required className="form-textarea" />
+      <textarea id="comment" value={comment} onChange={handleCommentChange} required className="form-textarea" disabled={isUserSignedIn}/>
     </div>
   
     <div>
       <label htmlFor="images" className="form-label">Images:</label>
-      <input type="file" id="images" name="file" onChange={handleImage} multiple className="form-file-input" />
+      <input type="file" id="images" name="file" onChange={handleImage} multiple className="form-file-input" disabled={isUserSignedIn}/>
       <div className="image-preview">
         {images.map((image, index) => (
           <img key={index} src={URL.createObjectURL(image)} alt={`Image ${index}`} className="image-preview-item" />
@@ -314,8 +302,18 @@ return(
     </div>
  
     <button type="submit" disabled={isLoading} className="submit-button">
-      {isLoading ? 'Posting...' : 'Post Review'}
+    {isLoading ? 'Posting...' : 'Post Review'}
     </button>
+    {isUserSignedIn ?
+        <p className='alert'>You should  
+              <Link to="/signin" >
+                      <h4>Sign in</h4>
+                      </Link>
+                       to Review 
+                        </p>
+                        :
+                        ""}
+    
   </form>
 </div>
 

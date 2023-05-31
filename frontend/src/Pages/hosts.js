@@ -7,6 +7,8 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Footer from './Footer';
+import { Link } from "react-router-dom";
+
 
 
 
@@ -83,7 +85,7 @@ function Hosts() {
 
         const fetchHost = async () => {
           try {
-            const res = await axios.get(`http://localhost:5000/host/${hostId}`);
+            const res = await axios.get(`https://trip-trail.onrender.com/host/${hostId}`);
             setHosts(res.data);
             console.log(res.data);
           } catch (error) {
@@ -99,7 +101,7 @@ function Hosts() {
           try {
             console.log(hostId)
             const response = await axios.get(
-              `http://localhost:5000/review/byHost/${hostId}`
+              `https://trip-trail.onrender.com/review/byHost/${hostId}`
             );
             const { data } = response;
             setReview(data);
@@ -121,7 +123,7 @@ function Hosts() {
             console.log(hostId);
             const currentDate = new Date(); // Get the current date
             const response = await axios.get(
-              `http://localhost:5000/book/bookByHost/${hostId}`
+              `https://trip-trail.onrender.com/book/bookByHost/${hostId}`
             );
             const { data } = response;
       
@@ -198,7 +200,7 @@ const handleSubmit = async (event) => {
 
 
     // Send review data to the backend API
-    const res = await axios.post('http://localhost:5000/review', reviewData, {
+    const res = await axios.post('https://trip-trail.onrender.com/review', reviewData, {
       headers: {
           'Content-Type': 'multipart/form-data', // Set the content type as multipart/form-data
         },
@@ -223,6 +225,7 @@ const handleSubmit = async (event) => {
 
 };
 
+const isUserSignedIn = !Id;
 
 
 
@@ -230,8 +233,8 @@ const handleSubmit = async (event) => {
   return (
     <>
   <Header />
+
   <div className="host-list-host">
-    {/* {hosts.map((host) => ( */}
       <div key={hosts._id} className="host-item-host">
         {hosts.image && <img src={hosts.image.url} alt={hosts.name} className="host-image-host" />}
         <div className="host-details-host">
@@ -240,9 +243,9 @@ const handleSubmit = async (event) => {
           <p className="host-description-host">About : {hosts.Description}</p>
         </div>
       </div>
-    {/* ))} */}
-  </div>
-
+   
+  </div> 
+ 
 
 <hr />
 
@@ -256,9 +259,10 @@ const handleSubmit = async (event) => {
 
 
 
+{ (Id && hostId === Id) ? 
 
 
-
+<>
 <h2 className="section-heading-host">Bookings</h2>
 <div className="user-list-section-host">
 
@@ -274,7 +278,10 @@ const handleSubmit = async (event) => {
     </div>
   ))}
 </div>
-
+</>
+:
+""
+}
 
 
 <p className='section-heading-host'>Reviews</p>
@@ -305,54 +312,40 @@ const handleSubmit = async (event) => {
 
 
 
-{/* <div className="main-host">
-    <p className='section-heading-host'>Reviews</p>
-<Slider {...settings}>
 
-
-{review.map((review) => (
-<div key={review.id} className="card-host">
-{review.image.length > 0 && (
-  <img src={review.image[0].url} alt={review.name} />
-  )}
-  <div className="details-host">
-  <h2>{review.userId.name}</h2>
-  <p>{new Date(review.createdAt).toLocaleDateString(undefined, {
-          year: 'numeric',
-          month: 'long',
-          day: 'numeric',
-        })}</p>
-              <p >{review.comment}</p></div>
-
-</div>
-))}
-</Slider>
-</div> */}
 
 <div className="post-review-section">
   <h2 className="section-heading">Post a Review</h2>
   <form onSubmit={handleSubmit} className="review-form">
     <div>
       <label htmlFor="comment" className="form-label">Comment:</label>
-      <textarea id="comment" value={comment} onChange={handleCommentChange} required className="form-textarea" />
+      <textarea id="comment" value={comment} onChange={handleCommentChange} required className="form-textarea" disabled={isUserSignedIn}/>
     </div>
  
     <div>
       <label htmlFor="images" className="form-label">Images:</label>
-      <input type="file" id="images" name="file" onChange={handleImage} multiple className="form-file-input" />
+      <input type="file" id="images" name="file" onChange={handleImage} multiple className="form-file-input" disabled={isUserSignedIn}/>
       <div className="image-preview">
         {images.map((image, index) => (
           <img key={index} src={URL.createObjectURL(image)} alt={`Image ${index}`} className="image-preview-item" />
         ))}
       </div>
     </div>
-    {/* <div>
-      <label htmlFor="userId" className="form-label">User ID:</label>
-      <input type="text" id="userId" value={userId} onChange={(e) => setUserId(e.target.value)} className="form-input" />
-    </div> */}
-    <button type="submit" disabled={isLoading} className="submit-button">
-      {isLoading ? 'Posting...' : 'Post Review'}
+   
+    <button type="submit" disabled={isLoading} className="submit-button"> 
+    {isLoading ? 'Posting...' : 'Post Review'}
+
     </button>
+    {isUserSignedIn ?
+        <p className='alert'>You should  
+              <Link to="/signin" >
+                      <h4>Sign in</h4>
+                      </Link>
+                       to Review 
+                        </p>
+                        :
+                        ""}
+   
   </form>
 </div>
 

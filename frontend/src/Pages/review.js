@@ -127,7 +127,7 @@ const ReviewForm = () => {
   
 
       // Send review data to the backend API
-      const res = await axios.post('http://localhost:5000/review', reviewData, {
+      const res = await axios.post('https://trip-trail.onrender.com/review', reviewData, {
         headers: {
             'Content-Type': 'multipart/form-data', // Set the content type as multipart/form-data
           },
@@ -164,7 +164,7 @@ const ReviewForm = () => {
   useEffect(() => {
       const fetchReviews = async () => {
         try {
-          const response = await axios.get('http://localhost:5000/review');
+          const response = await axios.get('https://trip-trail.onrender.com/review');
           setReviews(response.data);
         } catch (error) {
           console.log(error);

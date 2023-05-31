@@ -13,6 +13,7 @@
 }
 .home-nav {
   display: flex;
+  align-items: center;
 }
 
 .header-link {
@@ -26,6 +27,7 @@
 
   object-fit: contain;
   margin-left: 3rem;
+  /* margin-top: 0px; */
 }
 .title {
   position: relative;
@@ -68,6 +70,14 @@
 .link-item:active {
   color: #fc3b0b;
 }
+
+
+.link-item:active {
+  color: #fc3b0b;
+}
+
+
+
 
 .all-countries {
  
@@ -156,6 +166,7 @@
   font-weight: bold;
   color: #fc3b0b;
   margin-bottom: 10rem;
+  margin-top: 10rem;
   font-family: "Kite One";
 }
 
@@ -232,7 +243,8 @@ hr {
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   font-family: "Kite One";
-  margin-left: 4rem;
+  margin-left: 2rem;
+  margin-right: 4rem;
 }
 
 .article-content {
@@ -301,7 +313,7 @@ hr {
   margin-top: 14rem;
   color: #fc3b0b;
   font-family: "Kite One";
-
+margin-bottom: 11rem;
   font-size: 4rem;
 }
 

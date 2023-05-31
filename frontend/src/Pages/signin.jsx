@@ -13,7 +13,7 @@ import {useCookies} from "react-cookie";
 const SignInPage = () => {
     const navigate = useNavigate();
 
-const [_, setCookies] = useCookies(["access_token"])
+// const [_, setCookies] = useCookies(["access_token"])
 
 
   const [email, setEmail] = useState('');
@@ -30,18 +30,19 @@ const [_, setCookies] = useCookies(["access_token"])
     };
 
     try {
-      const response = await axios.post('http://localhost:5000/user/login', payload);
-      setCookies("access_token", response.data.token)
+      
+      const response = await axios.post('https://trip-trail.onrender.com/user/login', payload);
+      // setCookies("access_token", response.data.token)
 
       if (response.data.role === "superadmin" || response.data.role === "admin") {
         sessionStorage.setItem('id', response.data.user);
-        // sessionStorage.setItem('token', response.data.token);
+        sessionStorage.setItem('token', response.data.token);
         sessionStorage.setItem('role', response.data.role);
 
         navigate("/Dashboard", { replace: true });
     } else if (response.data.role === "user") {
         sessionStorage.setItem('id', response.data.user);
-        // sessionStorage.setItem('token', response.data.token);
+        sessionStorage.setItem('token', response.data.token);
         sessionStorage.setItem('role', response.data.role);
         sessionStorage.setItem('name', response.data.name);
         // sessionStorage.setItem('email', response.data.email);
@@ -90,16 +91,16 @@ const [_, setCookies] = useCookies(["access_token"])
 
 
     try {
-      const response = await axios.post('http://localhost:5000/host/login', payload);
+      const response = await axios.post('https://trip-trail.onrender.com/host/login', payload);
 
 
-      setCookies("access_token", response.data.token)
+      // setCookies("access_token", response.data.token)
       
         sessionStorage.setItem('id', response.data.host);
         sessionStorage.setItem('token', response.data.token);
       
 
-        navigate("/bookings", { replace: true });
+        // navigate("/bookings", { replace: true });
 
 
       if (response.status === 200) {
@@ -250,7 +251,7 @@ export default SignInPage;
 //     const submitlogin = async () => {
 //         try {
 //             const data = { email: email, password: password };
-//             const response = await axios.post(`http://localhost:5000/user/login`, data);
+//             const response = await axios.post(`https://trip-trail.onrender.com/user/login`, data);
 //             // console.log(response.data.role);
 //             // console.log(response.data.token);
 //             // if (response.data.role === "admin") {

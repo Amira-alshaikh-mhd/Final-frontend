@@ -20,7 +20,7 @@ const RegistrationForm = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:5000/user/register', {
+      const response = await axios.post('https://trip-trail.onrender.com/user/register', {
         name,
         email,
         password,

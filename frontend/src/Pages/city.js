@@ -54,7 +54,7 @@ const City = () => {
 
   const fetchTypes = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/type'); // Replace with your types API endpoint
+      const response = await axios.get('https://trip-trail.onrender.com/type'); // Replace with your types API endpoint
       const typesData = response.data;
       setTypes(typesData);
     } catch (error) {
@@ -68,7 +68,7 @@ const City = () => {
   const fetchCity = async () => {
     console.log(cityId)
     try {
-      const response = await axios.get(`http://localhost:5000/city/${cityId.cityId}`); // Replace with your types API endpoint
+      const response = await axios.get(`https://trip-trail.onrender.com/city/${cityId.cityId}`); // Replace with your types API endpoint
       const Data = response.data;
       console.log(Data,'dataaaaaaaaa')
       setCity(Data);
@@ -84,7 +84,7 @@ useEffect(() => {
   const fetchplace = async () => {
     console.log(cityId, 'city id')
     try {
-      const response = await axios.get(`http://localhost:5000/place/placesbyCity/${cityId.cityId}`); // Replace with your types API endpoint
+      const response = await axios.get(`https://trip-trail.onrender.com/place/placesbyCity/${cityId.cityId}`); // Replace with your types API endpoint
       const Data = response.data;
       console.log(Data,'dooooooo')
 
@@ -122,7 +122,7 @@ useEffect(() => {
     console.log(typeId);
     
     try {
-      const response = await axios.get(`http://localhost:5000/place/placesbyTypeAndCity/${cityId.cityId}?typeId=${typeId}`);
+      const response = await axios.get(`https://trip-trail.onrender.com/place/placesbyTypeAndCity/${cityId.cityId}?typeId=${typeId}`);
       setPlace (response.data);
       
       console.log(response.data, 'aaaaaaaaaaaaaaaaaaaaaaa')
@@ -155,14 +155,14 @@ useEffect(() => {
       try {
         console.log(cityId)
         // const res = await axios.get(
-        //   `http://localhost:5000/city/${cityId.cityId}`
+        //   `https://trip-trail.onrender.com/city/${cityId.cityId}`
         // );
         // // console.log(res.data, "im ress");
         // setCity(res.data)
         // const name = res.data.name;
         // console.log(name);
         const response = await axios.get(
-          `http://localhost:5000/host/getbyCity/${cityId.cityId}`
+          `https://trip-trail.onrender.com/host/getbyCity/${cityId.cityId}`
         );
 
         setHosts(response.data);
@@ -255,7 +255,7 @@ useEffect(() => {
   
 
 //       // Send review data to the backend API
-//       const res = await axios.post('http://localhost:5000/review', reviewData, {
+//       const res = await axios.post('https://trip-trail.onrender.com/review', reviewData, {
 //         headers: {
 //             'Content-Type': 'multipart/form-data', // Set the content type as multipart/form-data
 //           },

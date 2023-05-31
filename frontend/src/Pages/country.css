@@ -219,7 +219,7 @@ flex-wrap: wrap;
   .res-des{
     position: relative;
     top: 0rem;
-    right: 15%;
+    right: 43%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -229,7 +229,7 @@ flex-wrap: wrap;
     position: relative;
     word-break: break-all;
     top: 0rem;
-    right: 5%;
+    right: 36%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;

@@ -15,9 +15,13 @@ const ContactUsPage = () => {
   const sendEmail = (e) => {
     e.preventDefault();
 
+
     emailjs.sendForm('service_3u00ymy', 'template_ix8dfvr', form.current, 'dM0ctvZt4BmwcjsM1')
       .then((result) => {
           console.log(result.text);
+        window.location.reload(true)
+
+      
       }, (error) => {
           console.log(error.text);
       });

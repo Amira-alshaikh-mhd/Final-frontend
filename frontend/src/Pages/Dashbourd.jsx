@@ -11,6 +11,11 @@ import './Dashbourd.css';
 const AdminPage = () => {
 
 
+
+
+  const role = sessionStorage.getItem("role");
+
+
   const [hostName, setHostName] = useState('');
   const [hostPhone, setHostPhone] = useState('');
   const [hostEmail, setHostEmail] = useState('');
@@ -43,7 +48,7 @@ const AdminPage = () => {
       // Append the image file to the form data
       formData.append('image', hostImage);
   
-      const response = await axios.post('http://localhost:5000/host', formData, {
+      const response = await axios.post('https://trip-trail.onrender.com/host', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -78,7 +83,7 @@ const AdminPage = () => {
 
   const fetchHostsList = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/host');
+      const res = await axios.get('https://trip-trail.onrender.com/host');
       setHosts(res.data);
     } catch (error) {
       console.error(error);
@@ -129,7 +134,7 @@ const AdminPage = () => {
 
     
     try {
-      await axios.delete(`http://localhost:5000/country/${_id}`);
+      await axios.delete(`https://trip-trail.onrender.com/country/${_id}`);
       // fetchUserList(); // Refresh the user list after deleting a user
     } catch (error) {
       console.error(error);
@@ -152,7 +157,7 @@ const AdminPage = () => {
     formData.append('image', countryImage);
   
     try {
-      const response = await axios.post('http://localhost:5000/country', formData, {
+      const response = await axios.post('https://trip-trail.onrender.com/country', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -191,7 +196,7 @@ const AdminPage = () => {
   useEffect(() => {
     const fetchcount = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/country');
+        const response = await axios.get('https://trip-trail.onrender.com/country');
         setCountries(response.data);
       } catch (error) {
         console.log(error);
@@ -298,7 +303,7 @@ const AdminPage = () => {
 
     
     try {
-      await axios.delete(`http://localhost:5000/city/${_id}`);
+      await axios.delete(`https://trip-trail.onrender.com/city/${_id}`);
       // fetchUserList(); // Refresh the user list after deleting a user
     } catch (error) {
       console.error(error);
@@ -322,7 +327,7 @@ const AdminPage = () => {
     formData.append('image', cityImage);
   
     try {
-      const response = await axios.post('http://localhost:5000/city', formData, {
+      const response = await axios.post('https://trip-trail.onrender.com/city', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -369,7 +374,7 @@ const AdminPage = () => {
   useEffect(() => {
     const fetchcities = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/city');
+        const response = await axios.get('https://trip-trail.onrender.com/city');
         setCities(response.data);
       } catch (error) {
         console.log(error);
@@ -442,7 +447,7 @@ const AdminPage = () => {
   useEffect(() => {
   const fetchUserList = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/user');
+      const response = await axios.get('https://trip-trail.onrender.com/user');
       const usersWithAdminRole = response.data.filter(user => user.role === 'admin');
       setUsers(usersWithAdminRole);
     } catch (error) {
@@ -467,7 +472,7 @@ const AdminPage = () => {
     event.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:5000/user/Admin', {
+      const response = await axios.post('https://trip-trail.onrender.com/user/Admin', {
         name,
         email,
         password,
@@ -495,7 +500,7 @@ const AdminPage = () => {
 
     
     try {
-      await axios.delete(`http://localhost:5000/user/${_id}`);
+      await axios.delete(`https://trip-trail.onrender.com/user/${_id}`);
       // fetchUserList(); // Refresh the user list after deleting a user
     } catch (error) {
       console.error(error);
@@ -507,7 +512,7 @@ const AdminPage = () => {
 
     
     try {
-      await axios.delete(`http://localhost:5000/host/${_id}`);
+      await axios.delete(`https://trip-trail.onrender.com/host/${_id}`);
       // fetchUserList(); // Refresh the user list after deleting a user
     } catch (error) {
       console.error(error);
@@ -556,7 +561,7 @@ useEffect(() => {
 
 const fetchTypes = async () => {
   try {
-    const response = await axios.get('http://localhost:5000/type');
+    const response = await axios.get('https://trip-trail.onrender.com/type');
     setTypes(response.data);
   } catch (error) {
     console.log(error);
@@ -565,7 +570,7 @@ const fetchTypes = async () => {
 
 const handleCreateType = async () => {
   try {
-    const response = await axios.post('http://localhost:5000/type', {
+    const response = await axios.post('https://trip-trail.onrender.com/type', {
       name: typeName,
     });
     console.log(response.data); // Handle the response as needed
@@ -582,7 +587,7 @@ const handleTypeNameChange = (event) => {
 
 const handleDeleteType = async (_id) => {
   try {
-    await axios.delete(`http://localhost:5000/type/${_id}`);
+    await axios.delete(`https://trip-trail.onrender.com/type/${_id}`);
     fetchTypes();
   } catch (error) {
     console.log(error);
@@ -639,7 +644,7 @@ const handleDeleteType = async (_id) => {
 
   const fetchPlaces = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/place');
+      const response = await axios.get('https://trip-trail.onrender.com/place');
       setPlaces(response.data);
     } catch (error) {
       console.log(error);
@@ -670,7 +675,7 @@ const handleDeleteType = async (_id) => {
   const handleCreatePlace = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`http://localhost:5000/place`, placeData);
+      const response = await axios.post(`https://trip-trail.onrender.com/place`, placeData);
       console.log(response.data);
       setPlaceData({
         name: '',
@@ -690,7 +695,7 @@ const handleDeleteType = async (_id) => {
 
   const handleDeletePlace = async (placeId) => {
     try {
-      await axios.delete(`http://localhost:5000/place/${placeId}`);
+      await axios.delete(`https://trip-trail.onrender.com/place/${placeId}`);
       // Fetch all places again to update the list
       fetchPlaces();
     } catch (error) {
@@ -713,7 +718,7 @@ const handleDeleteType = async (_id) => {
   const handleUpdatePlace = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.put(`http://localhost:5000/place/${selectedPlace._id}`, placeData);
+      const response = await axios.put(`https://trip-trail.onrender.com/place/${selectedPlace._id}`, placeData);
       console.log(response.data);
       setPlaceData({
         name: '',
@@ -793,7 +798,7 @@ const handleDeleteType = async (_id) => {
 
 
 
-<Button onClick={() => setShowCreateCountryModal(true)}>Create Country</Button>
+<Button className='create-cou' onClick={() => setShowCreateCountryModal(true)}>Create Country</Button>
 
 <Modal show={showCreateCountryModal} onHide={() => setShowCreateCountryModal(false)}>
   <Modal.Header closeButton>
@@ -909,9 +914,13 @@ const handleDeleteType = async (_id) => {
 
 
 
+        {role === "superadmin" ?
 
 
-      <Button onClick={() => setShowModal(true) } className='create-admin-btn'>Show Create Admin Form</Button>
+      <Button onClick={() => setShowModal(true) } className='create-admin-btn'> Add Admin </Button>
+      :
+      ""
+        }
 
       <Modal show={showModal} onHide={handleClose}>
         <Modal.Header closeButton>
@@ -1074,7 +1083,7 @@ const handleDeleteType = async (_id) => {
 
 
 <div>
-      <div className='country-list-section'>
+      <div className='country-list-section-place'>
         <form onSubmit={selectedPlace ? handleUpdatePlace : handleCreatePlace}>
           <input
             type="text"
@@ -1150,12 +1159,24 @@ const handleDeleteType = async (_id) => {
  
 </div>
         </form>
+
       </div>
+
+
+
+
+
+
+
+
+
+
       <ul className='user-list-section'>
         {places.map((place) => (
           <li key={place._id}>
-            {place.name}
-            <button onClick={() => handleEditPlace(place)} className='country-edit'>Edit</button>
+      <span className='country-name'>
+            {place.name}</span>
+            <button onClick={() => handleEditPlace(place)} className='country-edit-p'>Edit</button>
             <button onClick={() => handleDeletePlace(place._id)} >Delete</button>
           </li>
         ))}

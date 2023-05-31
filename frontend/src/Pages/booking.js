@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../Pages/booking.css'
 import { useParams } from 'react-router-dom';
+import { Link } from "react-router-dom";
+
 
 const BookingComponent = () => {
   const cityId = useParams();
@@ -11,8 +13,10 @@ const BookingComponent = () => {
 
   const [totalPrice, setTotalPrice] = useState(0);
   const [books, setBooks] = useState([]);
+  const [numberOfDays, setNumberOfDays] = useState(0)
   const [host, setHost] = useState([]);
   const [selectedHost, setSelectedHost] = useState(null);
+  const [error,setError] = useState(null)
   const [bookingData, setBookingData] = useState({
     startDate: '',
     endDate: '',
@@ -20,6 +24,13 @@ const BookingComponent = () => {
     hostId: '',
     userId: userId
   });
+
+
+  const startDate = new Date(bookingData.startDate);
+const endDate = new Date(bookingData.endDate);
+
+const timeDifference = parseInt(endDate.getTime() - startDate.getTime());
+const days = parseInt(Math.ceil(timeDifference / (1000 * 60 * 60 * 24)));
 
 
     
@@ -42,7 +53,7 @@ const BookingComponent = () => {
 
   const fetchBooks = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/book');
+      const response = await axios.get('https://trip-trail.onrender.com/book');
       setBooks(response.data);
     } catch (error) {
       console.log(error);
@@ -53,7 +64,7 @@ const BookingComponent = () => {
     const fetchHosts = async () => {
       console.log(cityId)
       try {
-        const response = await axios.get(`http://localhost:5000/host/getbyCity/${cityId.cityId}`);
+        const response = await axios.get(`https://trip-trail.onrender.com/host/getbyCity/${cityId.cityId}`);
         setHost(response.data);
         
       } catch (error) {
@@ -85,9 +96,9 @@ const BookingComponent = () => {
       const endDate = new Date(bookingData.endDate);
       const timeDiff = Math.abs(endDate.getTime() - startDate.getTime());
       const numberOfDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
-      const pricePerDay = parseFloat(host.price);
-      const totalPrice = isNaN(pricePerDay) || numberOfDays <= 0 ? 0 : numberOfDays * pricePerDay;
-  
+      setNumberOfDays(numberOfDays)
+      
+      
       setBookingData((prevState) => ({
         ...prevState,
         [name]: value,
@@ -110,8 +121,10 @@ const BookingComponent = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/book', bookingData);
+      const response = await axios.post('https://trip-trail.onrender.com/book', bookingData);
       console.log(response.data.message);
+      setError(response.data.message)
+      
       // Refresh the list of books after successful booking
       fetchBooks();
     } catch (error) {
@@ -128,6 +141,11 @@ const BookingComponent = () => {
     setBookingData({ ...bookingData, hostId: selectedHostId });
   };
 
+
+
+
+  const isUserSignedIn = !userId;
+
   return (
    
   
@@ -141,6 +159,7 @@ const BookingComponent = () => {
           id="startDate"
           value={bookingData.startDate}
           onChange={handleInputChange}
+          disabled={isUserSignedIn}
         />
         <br />
         <label htmlFor="endDate">End Date:</label>
@@ -150,6 +169,7 @@ const BookingComponent = () => {
           id="endDate"
           value={bookingData.endDate}
           onChange={handleInputChange}
+          disabled={isUserSignedIn}
         />
         <br />
         <label htmlFor="number">Number:</label>
@@ -159,6 +179,7 @@ const BookingComponent = () => {
           id="number"
           value={bookingData.number}
           onChange={handleInputChange}
+          disabled={isUserSignedIn}
         />
         <br />
         <label htmlFor="hostId">Host:</label>
@@ -176,12 +197,18 @@ const BookingComponent = () => {
           ))}
         </select>
         {selectedHost && (
+          <>
           <p>Price: $ {selectedHost.price}</p>
-        )}
-        <br />
+          <br />
         <div className="total-price">
-  <p>Total Price: {totalPrice}</p>
+  <p>Total Price: {selectedHost.price * numberOfDays}</p>
 </div>
+{error && <div className="total-price">
+  <p>{error}</p>
+</div>}
+          </>
+        )}
+      
         <br />
         {/* <label htmlFor="userId">User ID:</label>
         <input
@@ -192,7 +219,16 @@ const BookingComponent = () => {
           onChange={handleInputChange}
         /> */}
         <br />
-        <button type="submit">Book</button>
+        <button type="submit" disabled={isUserSignedIn}>Book</button>
+        {isUserSignedIn ?
+        <p className='alert'>You should  
+              <Link to="/signin" >
+                      <h4>Sign in</h4>
+                      </Link>
+                       to book 
+                        </p>
+                        :
+                        ""}
       </form>
     </div>
   );

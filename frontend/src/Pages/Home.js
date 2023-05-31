@@ -12,13 +12,19 @@ import { useCookies } from "react-cookie";
 
 function Home() {
   // const [isSignedIn, setIsSignedIn] = useState(false);
-  const [cookies, setCookies] = useCookies("access_token");
+  // const [cookies, setCookies] = useCookies("access_token");
+  const role = sessionStorage.getItem("role");
+  const token = sessionStorage.getItem("token");
+  
 
 
 
   const removeCookies = () =>{
-    setCookies("access_token", "")
+    // setCookies("access_token", "")
+    sessionStorage.removeItem("token")
     sessionStorage.removeItem("id")
+    sessionStorage.removeItem("role")
+    sessionStorage.removeItem("name")
     window.location.reload(false)
   }
 
@@ -59,9 +65,11 @@ function Home() {
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/review");
+        const response = await axios.get("https://trip-trail.onrender.com/review");
         setReviews(response.data);
         console.log(response.data, "tesssst");
+        const reviews = response.data;
+        setReviews(reviews.slice(-8));
       } catch (error) {
         console.log(error);
       }
@@ -74,7 +82,7 @@ function Home() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/country");
+        const response = await axios.get("https://trip-trail.onrender.com/country");
         setCountries(response.data);
       } catch (error) {
         console.log(error);
@@ -87,7 +95,7 @@ function Home() {
   useEffect(() => {
     const logout = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/user/logout");
+        const response = await axios.get("https://trip-trail.onrender.com/user/logout");
       } catch (error) {
         console.log(error);
       }
@@ -105,11 +113,31 @@ function Home() {
             <Link to="/" className="link-item">
               Home
             </Link>
+
+
+
+
+        {!(role === "admin" || role === "superadmin") ?
+
+
             <Link to="/contact" className="link-item">
               Contact us
             </Link>
+:
 
-            {cookies.access_token ? (
+<Link to="/dash" className="link-item">
+              Dashbourd
+            </Link>
+
+
+  }
+
+
+
+
+
+
+            {token ? (
               // <button onClick={removeCookies}>Log out</button>
               <Link  onClick={removeCookies} className="link-item">
               Logout
@@ -152,13 +180,13 @@ function Home() {
       <div className="gallery-container">
         <p>Our Clients Gallery</p>
         <div>
-          {reviews.map((review) => (
-            <div key={review.id} className="review-item-img">
+          {reviews.map((reviews) => (
+            <div key={reviews._id} className="review-item-img">
               <div>
-                {review.image.length > 0 && (
+                {reviews.image.length > 0 && (
                   <img
-                    src={review.image[0].url}
-                    alt={review.name}
+                    src={reviews.image[0].url}
+                    alt={reviews.name}
                     className="gal_img"
                   />
                 )}

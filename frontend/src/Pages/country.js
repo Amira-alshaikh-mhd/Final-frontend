@@ -52,14 +52,14 @@ const Country = () => {
     const fetchCities = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:5000/country/${countryName}`
+          `https://trip-trail.onrender.com/country/${countryName}`
         );
         // console.log(res.data, "im ress");
         setCountry(res.data)
         const name = res.data.name;
         // console.log(name);
         const response = await axios.get(
-          `http://localhost:5000/city/citiesbyCountryName/${name}`
+          `https://trip-trail.onrender.com/city/citiesbyCountryName/${name}`
         );
 
         setCities(response.data);
@@ -71,7 +71,7 @@ const Country = () => {
     const fetchRestaurants = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/place/placesbyCountry/${countryName}`
+          `https://trip-trail.onrender.com/place/placesbyCountry/${countryName}`
         );
         const { data } = response;
         setRestaurants(data);
@@ -90,7 +90,7 @@ const Country = () => {
         const place = data.filter(
           (place) => place.typeId && place.typeId.name !== "Restaurants" && place.typeId.name !== "Hotels"
         );
-        setPlace(place.slice(0, 3));
+        setPlace(place.slice(-3));
 
         setRestaurants(restaurants);
         setHotels(hotels);

@@ -141,9 +141,10 @@
   transition: background-color 0.3s ease;
 }
 
-/* .country-item:hover {
+.country-item:hover {
     background-color: #f5f5f5;
-  } */
+    margin-left: -2rem;
+  }
 
 .gall-header {
   background-image: url("../images/fotoalbum-t.jpg");
@@ -243,7 +244,7 @@ hr {
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   font-family: "Kite One";
-  margin-left: 2rem;
+  margin-left: 3rem;
   margin-right: 4rem;
 }
 
@@ -391,7 +392,7 @@ margin-bottom: 11rem;
   margin-left: 3.5rem;
 }
 .card img {
-  box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.5);
+  /* box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.5); */
   
   width: 46%;
   height: 19rem !important;
@@ -399,6 +400,7 @@ margin-bottom: 11rem;
   border-radius: 6px;
   height: 10rem;
   margin-right: 9rem;
+  margin-left: -3rem;
 }
 .card h2 {
   font-size: 18px;
@@ -488,6 +490,21 @@ right: 15%;
 
 }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @media screen and (max-width: 1500px) {
 
@@ -723,6 +740,13 @@ right: 15%;
 @media screen and (max-width: 620px) {
   .logo {
     width: 9rem;
+   
+      margin-top: 2rem;
+  
+  }
+  .card img {
+    
+    margin-left: 0rem;
   }
 
 }
@@ -730,7 +754,23 @@ right: 15%;
 @media screen and (max-width: 550px) {
   .link-item {
     padding-left: 2rem;
+    
+      font-size: 12px;
+
   }
+  /* .home-nav {
+    margin-left: -1rem;
+} */
+
+  .main {
+  
+      width: 87%;
+      position: relative;
+      right: -8%;
+  }
+
+
+
     .logo {
       
       margin-left: 0rem;
@@ -738,29 +778,69 @@ right: 15%;
   .card {
     width: 95% !important;
     margin-left: 1rem;
+    position: relative;
+    right: 1%;
+   
+  }
+
+ .date{
+  margin-left: 11rem !important;
+ }
+
+
+  .details h2 {
+    font-size: 2rem;
+    margin-left: 3rem;
   }
   .home-countries {
-    margin-left: 20%;
+    margin-left: 17%;
 }
 }
 
 @media screen and (max-width: 450px) {
   .header-link {
-    padding-left: 0rem;
+    /* padding-left: 0rem; */
+    /* padding-right: 1rem; */
+    position: relative;
+    left: 2rem;
+    top:-1rem
 }
 .link-item {
 
-  font-size: 14px;
+  font-size: 10px;
+}
+
+.home-nav {
+  display: flex;
+
 }
 .logo {
   width: 7rem;
+  position: relative;
+  top:-1rem;
 }
 .details {
   
+  right: 1%;
+}
+
+.main {
+  width: 87%;
+  position: relative;
   right: -5%;
 }
 }
 
+@media screen and (max-width: 390px) {
+
+
+.header-link {
+
+  position: relative;
+  left: 0rem;
+  top: -1rem;
+}
+}
 
 @media screen and (max-width: 350px) {
 
@@ -774,4 +854,17 @@ right: 15%;
 
     max-width: 14rem;
   }
+}
+
+@media screen and (max-width: 300px) {
+
+
+.header-link {
+  position: relative;
+  left: -2rem;
+  top: -1rem;
+}
+.main {
+  width: 91%;
+}
 }

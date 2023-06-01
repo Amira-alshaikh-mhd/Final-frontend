@@ -16,6 +16,8 @@
   /* justify-content: flex-end; */
   margin-top: -48rem;
   margin-left: -4rem;
+  position: static;
+  z-index: 2;
 }
 
 .sign-in-image {

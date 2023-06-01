@@ -252,7 +252,7 @@ function Home() {
               )}
               <div className="details">
                 <h2>{review && review.userId && review.userId.name}</h2>
-                <p>
+                <p className="date">
                   {new Date(review.createdAt).toLocaleDateString(undefined, {
                     year: "numeric",
                     month: "long",

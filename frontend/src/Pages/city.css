@@ -10,6 +10,8 @@
   text-align: center;
   color: #fc3b0b;
   font-family: "Kite One";
+  margin-top: 4rem;
+  margin-bottom: 4rem;
 }
 
 .city-des {
@@ -135,7 +137,14 @@ h1 {
 }
 
 
-
+.choose{
+  text-align: center;
+  font-size: 2rem;
+  color: #fc3b0b;
+  font-family: "Kite One";
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+}
 
 
 .country-item-co {
@@ -441,13 +450,23 @@ h1 {
     height: 22rem;
     width: 8rem;
     margin-bottom: 5rem;
+    margin-left: 0rem;
 }
+.res-des-1 {
+  max-width: 12rem;
+  margin-left: 25%;
+}
+
 .restaurant-carousel h2 {
   font-size: 3rem;
 }
 .address-city {
   margin-top: 3rem;
 
+}
+.placeCard {
+  margin-left: -1rem;
+}
 }
 
 
@@ -476,11 +495,11 @@ h1 {
 
 
 
-}
-.res-des-1{
+
+/* .res-des-1{
   max-width: 12rem;
   margin-left: 35%;
-}
+} */
 
 
 

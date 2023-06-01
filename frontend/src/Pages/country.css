@@ -233,6 +233,7 @@ flex-wrap: wrap;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    align-items: center;
 
   }
 
@@ -595,7 +596,12 @@ flex-wrap: wrap;
 @media (max-width: 414px) {
 
   .test {
-    left: -29%;
+    left: -33%;
+}
+
+.res-img-h {
+ 
+  margin-left: 0rem;
 }
   .title2-co {
     margin-left: 37px;
@@ -630,7 +636,7 @@ flex-wrap: wrap;
 
   .res-des-h {
     font-size: 11px;
-    right: -10%;
+    right: 0%;
   }
 
 
@@ -648,6 +654,7 @@ flex-wrap: wrap;
     height: 11rem;
     width: 14rem;
     margin-bottom: 0rem;
+    margin-left: 0rem;
 }
 
 
@@ -676,6 +683,6 @@ flex-wrap: wrap;
 
 @media (max-width: 375px){
 .test {
-    left: -35%;
+    left: -36%;
 }
 }

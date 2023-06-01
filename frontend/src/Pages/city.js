@@ -215,95 +215,6 @@ useEffect(() => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-//   const handleCommentChange = (event) => {
-//     setComment(event.target.value);
-//   };
-
-//   const handleRatingChange = (event) => {
-//     // setRating(event.target.value);
-//   };
-
-//   const handleImageChange = (event) => {
-//     const selectedImages = Array.from(event.target.files);
-//     setImages(selectedImages);
-//   };
-
-//   const handleSubmit = async (event) => {
-//     event.preventDefault();
-//     setIsLoading(true);
-
-//     try {
-//       const reviewData = new FormData();
-//       reviewData.append('comment', comment);
-//       reviewData.append('rating', rating);
-//       reviewData.append('userId', userId);
-
-//       // Append each image to the FormData
-//       for (let i = 0; i < images.length; i++) {
-//         reviewData.append('image', images[i]);
-//       }
-  
-
-//       // Send review data to the backend API
-//       const res = await axios.post('https://trip-trail.onrender.com/review', reviewData, {
-//         headers: {
-//             'Content-Type': 'multipart/form-data', // Set the content type as multipart/form-data
-//           },
-//       });
-
-//       // Handle success or show notification
-
-//       // Reset form fields
-//       setUserId('')
-//       setComment('');
-//       setRating(0);
-//       setImages([]);
-//       console.log(res)
-//     } catch (error) {
-//       console.error(error);
-//       // Handle error or show error notification
-//     }
-//      finally {
-//       setIsLoading(false);
-//     }
-
-
-// };
-
-
-//     const renderStars = () => {
-//         const stars = [];
-//         for (let i = 1; i <= MAX_RATING; i++) {
-//           stars.push(
-//             <span
-//               key={i}
-//               className={`star ${rating >= i ? 'filled' : ''}`}
-//               onClick={() => handleRatingChange(i)}
-//             >
-//               &#9733;
-//             </span>
-//           );
-//         }
-        
-//         return stars;
-//       };
-
-
-
-
-
-
-
   return (
 
 
@@ -317,6 +228,11 @@ useEffect(() => {
 <h3 className='city-title'>{city.name}</h3>
 <h3 className='city-des'>{city.Describtion}</h3>
 <hr />
+
+
+
+<p className='choose'>Choose your perfect place to explore</p>
+
 
 <div className="buttonContainer">
   {types.map((type) => {
@@ -337,8 +253,14 @@ useEffect(() => {
   })}
 </div>
 
-<div className="placeContainer">
 
+
+
+
+
+
+
+<div className="placeContainer">
 
   {place.map((place) => (
     <div key={place._id} className="placeCard">
@@ -356,6 +278,11 @@ useEffect(() => {
     </div>
   ))}
 </div>
+
+
+
+
+
 
 
 

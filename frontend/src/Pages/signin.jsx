@@ -59,7 +59,6 @@ const SignInPage = () => {
       if (response.status === 200) {
         const  token  = response.data;
         console.log(token, 'dssd');
-        
         navigate("/", { replace: true });
         
         // Handle successful login, e.g., store the token in local storage or state
@@ -154,6 +153,8 @@ const SignInPage = () => {
   };
 
   return (
+    <>
+    <ToastContainer />
     <div className="sign-in-container">
     <div className="image-container">
     <Link to="/" className="link-item">
@@ -193,6 +194,7 @@ const SignInPage = () => {
       </form>
     </div>
   </div>
+  </>
   );
 };
 
@@ -202,159 +204,3 @@ export default SignInPage;
 
 
 
-
-
-
-// import logo from '../images/logo.png'
-// import { useEffect, useState } from "react";
-// import axios from "axios"
-// import { useNavigate } from "react-router-dom"
-// import { Link } from "react-router-dom";
-// import { toast, ToastContainer } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
-
-// function Login() {
-
-
-
-
-
-
-//     const navigate = useNavigate();
-//     //   function navigateToSingUp (){
-//     //     navigate("/users/new", { replace: true });
-//     // }
-//     //     navigate("/Admin", { replace: true });
-
-
-
-
-
-//     const [email, setemail] = useState('')
-//     const [password, setpassword] = useState('')
-
-
-//     const handleEmailChange = (event) => {
-//         setemail(event.target.value);
-//     }
-
-
-
-
-//     const handlepasswordchange = (event) => {
-//         setpassword(event.target.value);
-//     }
-
-//     useEffect(() => { }, [email, password]);
-
-
-//     const submitlogin = async () => {
-//         try {
-//             const data = { email: email, password: password };
-//             const response = await axios.post(`https://trip-trail.onrender.com/user/login`, data);
-//             // console.log(response.data.role);
-//             // console.log(response.data.token);
-//             // if (response.data.role === "admin") {
-//             //     sessionStorage.setItem('id', response.data._id);
-//             //     sessionStorage.setItem('token', response.data.token);
-//             //     sessionStorage.setItem('role', response.data.role);
-
-//             //     navigate("/Dashboard", { replace: true });
-//             // } else {
-//                 // sessionStorage.setItem('id', response.data._id);
-//                 // sessionStorage.setItem('token', response.data.token);
-//                 // sessionStorage.setItem('role', response.data.role);
-//                 // sessionStorage.setItem('address', response.data.address);
-//                 // sessionStorage.setItem('phone', response.data.phone);
-//                 navigate("/", { replace: true });
-//             // } 
-
-//             if (response.status === 200) {
-//                         const  token  = response.data;
-//                         console.log(token)
-//                         navigate("/", { replace: true });
-//                         // Handle successful login, e.g., store the token in local storage or state
-//                       } else {
-//                         const { message } = response.data;
-                        
-//                       }
-//         } catch (error) {
-//             console.error(error);
-//         }
-//     };
-
-
-
-//     return (
-//         <div className="container-login" >
-
-//             <ToastContainer />
-
-//             <div className="login-leftdiv">
-
-
-
-//                 <img className="pablo-login" src={logo} alt="" />
-
-
-
-
-//                 <div className="login-form-container">
-
-
-//                     <h1 className="sign-in">Sign in</h1>
-
-//                     <label className="label-usernamepass" >email</label>
-//                     <input className="input-usernamepass" onChange={handleEmailChange} value={email} type="text" />
-
-
-//                     <label className="label-usernamepass"  >Password</label>
-//                     <input className="input-usernamepass" onChange={handlepasswordchange} value={password} type="password" />
-
-
-//                     <button className="submit-login" onClick={() => submitlogin()}>Submit</button>
-
-//                     <div className="signup-word">
-
-
-//                         <Link to="/signup">  <h4>Register</h4></Link>
-//                     </div>
-//                 </div>
-//             </div>
-
-
-
-
-//             <div className="login-rightdiv">
-
-//             </div>
-
-
-
-
-
-
-
-
-
-
-
-
-//         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-//     );
-// }
-
-// export default Login;

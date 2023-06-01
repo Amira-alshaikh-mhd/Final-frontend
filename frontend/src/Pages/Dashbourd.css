@@ -109,3 +109,48 @@
   .create-cou{
     margin: 2rem;
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  .modal-form-input-p {
+    /* Add your desired input styles here */
+    margin-bottom: 10px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .modal-form-button {
+    /* Add your desired button styles here */
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .create-admin-btn-p {
+    /* Additional styles for the create admin button */
+  }
+  
+  #images {
+    /* Additional styles for the file input */
+  }
+  
+  /* Additional styles for the images */
+  

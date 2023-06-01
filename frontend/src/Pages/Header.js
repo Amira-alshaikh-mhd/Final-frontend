@@ -9,6 +9,8 @@ function Header() {
   // const [cookies, setCookies] = useCookies("access_token");
 
   const token = sessionStorage.getItem("token");
+  const role = sessionStorage.getItem("role");
+  
 
 
   const removeCookies = () =>{
@@ -31,10 +33,18 @@ function Header() {
             <Link to="/" className="link-item">
               Home
             </Link>
+            {!(role === "admin" || role === "superadmin") ?
+
+
             <Link to="/contact" className="link-item">
               Contact us
             </Link>
+:
 
+<Link to="/Dash" className="link-item">
+              Dashbourd
+            </Link>
+}
 
             {token ? (
               // <button onClick={removeCookies}>Log out</button>

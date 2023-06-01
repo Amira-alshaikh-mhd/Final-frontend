@@ -17,19 +17,21 @@ import Hosts from "./Pages/hosts";
 import Header from "./Pages/Header";
 import ContactUsPage from "./Pages/contactUs";
 import HostBookings from "./Pages/hostBookings";
+import AdminPage from "./Pages/Dashbourd";
 
 function App() {
   const role = sessionStorage.getItem("role");
+  
 
   return (
     <BrowserRouter>
       <Routes>
-        {role === "admin" && (
-          <Route path="/dash" element={<CreateAdminForm />} />
+        {(role === "admin" || role === "superadmin" ) &&(
+          <Route path="/Dash" element={<AdminPage />} />
         )}
-         {role === "superadmin" && (
-          <Route path="/dash" element={<CreateAdminForm />} />
-        )}
+        
+          {/* <Route path="/dash" element={<CreateAdminForm />} /> */}
+        
         <Route path="/" element={<Home />} />
         <Route path="/country/:countryName" element={<Country />} />
         <Route path="/city/:cityId" element={<City />} />

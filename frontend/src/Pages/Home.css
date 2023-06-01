@@ -611,6 +611,7 @@ right: 15%;
     margin-top: 7rem;
     margin-bottom: -10rem;
     margin-left: 33%;
+   
   }
 
   .country-item-container {
@@ -753,7 +754,7 @@ right: 15%;
 
 @media screen and (max-width: 550px) {
   .link-item {
-    padding-left: 2rem;
+    padding-left: 1rem;
     
       font-size: 12px;
 
@@ -793,7 +794,14 @@ right: 15%;
     margin-left: 3rem;
   }
   .home-countries {
-    margin-left: 17%;
+    margin-left: 13%;
+}
+.articles-container h2 {
+  padding: 1rem;
+}
+.title {
+
+  font-size: 1.75rem;
 }
 }
 
@@ -839,16 +847,25 @@ right: 15%;
   position: relative;
   left: -1rem;
   top: -1rem;
+
 }
+.home-countries {
+  margin-left: 15%;
 }
 
-@media screen and (max-width: 350px) {
+}
+
+@media screen and (max-width: 360px) {
 
 
 .home-countries {
  
   margin-left: 9%;
 }
+.home-countries {
+  margin-left: 12%;
+}
+
 
 .card p {
 

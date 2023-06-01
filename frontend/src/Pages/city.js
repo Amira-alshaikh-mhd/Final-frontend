@@ -14,6 +14,8 @@ import img2 from '../images/img2.jpg'
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+
+
 // import './RestaurantCarousel.css'; // Import custom CSS for the carousel component
 
 
@@ -219,6 +221,7 @@ useEffect(() => {
 
 
 <div>
+
 <Header />
 
 

@@ -125,9 +125,9 @@ function Home() {
             </Link>
 :
 
-<Link to="/dash" className="link-item">
-              Dashbourd
-            </Link>
+<Link className="link-item" onClick={() => window.location.pathname = "/Dash"}>
+  Dashboard
+</Link>   
 
 
   }

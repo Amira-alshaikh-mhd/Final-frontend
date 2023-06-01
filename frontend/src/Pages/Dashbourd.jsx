@@ -7,6 +7,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Modal, Button } from 'react-bootstrap';
 import './Dashbourd.css';
+import Header from './Header';
+import Footer from './Footer';
 
 const AdminPage = () => {
 
@@ -640,7 +642,7 @@ const handleDeleteType = async (_id) => {
     fetchPlaces();
   
     fetchTypes();
-  }, []);
+  }, [placeData]);
 
   const fetchPlaces = async () => {
     try {
@@ -665,7 +667,7 @@ const handleDeleteType = async (_id) => {
       // Check if the file is an image
       if (file.type.startsWith("image/")) {
         newImages.push(file);
-      }
+      } 
     }
   
     setImages(newImages);
@@ -686,8 +688,10 @@ const handleDeleteType = async (_id) => {
         typeId: '',
         image:'',
       });
+      alert("place created successfuly")
       // Fetch all places again to update the list
       fetchPlaces();
+      setImages(null)
     } catch (error) {
       console.log(error);
     }
@@ -750,7 +754,10 @@ const handleDeleteType = async (_id) => {
 
 
   return (
+    <>
+     <Header />
     <div className="admin-page">
+     
     <div className="admin-section">
 
 
@@ -1083,7 +1090,15 @@ const handleDeleteType = async (_id) => {
 
 
 <div>
+<Button onClick={() => setShowModal(true) } className='create-admin-btn'> Add place </Button>
+
       <div className='country-list-section-place'>
+
+      <Modal show={showModal} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Create Place</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
         <form onSubmit={selectedPlace ? handleUpdatePlace : handleCreatePlace}>
           <input
             type="text"
@@ -1091,7 +1106,7 @@ const handleDeleteType = async (_id) => {
             placeholder="Name"
             value={placeData.name}
             onChange={handleInputChange}
-            className='modal-form-input'
+            className='modal-form-input-p'
           />
           <input
             type="text"
@@ -1099,7 +1114,7 @@ const handleDeleteType = async (_id) => {
             placeholder="Description"
             value={placeData.Description}
             onChange={handleInputChange}
-            className='modal-form-input'
+            className='modal-form-input-p'
           />
           <input
             type="text"
@@ -1107,7 +1122,7 @@ const handleDeleteType = async (_id) => {
             placeholder="Address"
             value={placeData.Address}
             onChange={handleInputChange}
-            className='modal-form-input'
+            className='modal-form-input-p'
           />
           <input
             type="text"
@@ -1115,13 +1130,13 @@ const handleDeleteType = async (_id) => {
             placeholder="Rating"
             value={placeData.rating}
             onChange={handleInputChange}
-            className='modal-form-input'
+            className='modal-form-input-p'
           />
           <select
             name="cityId"
             value={placeData.cityId}
             onChange={handleInputChange}
-            className='modal-form-input'
+            className='modal-form-input-p'
           >
             <option value="">Select City</option>
             {cities.map((city) => (
@@ -1134,7 +1149,7 @@ const handleDeleteType = async (_id) => {
             name="typeId"
             value={placeData.typeId}
             onChange={handleInputChange}
-            className='modal-form-input'
+            className='modal-form-input-p'
           >
             <option value="">Select Type</option>
             {types.map((type) => (
@@ -1143,27 +1158,30 @@ const handleDeleteType = async (_id) => {
               </option>
             ))}
           </select>
-          <button type="submit" className='modal-form-button create-admin-btn'>
-            {selectedPlace ? 'Update Place' : 'Create Place'}
-          </button>
+        
 
           <div>
   <label htmlFor="images">Images:</label>
-  <input type="file" id="images" name="file" onChange={handleImage} multiple />
+  <input type="file" id="images" name="file" value={placeData.image} onChange={handleImage} multiple />
 
   <div>
-  {images.map((image, index) => (
+  {images&&images.map((image, index) => (
     <img key={index} src={URL.createObjectURL(image)} alt={`Image ${index}`} style={{ width: "100px", height: "100px" }} />
   ))}
 </div>
+<button type="submit" className='modal-form-button create-admin-btn-p'>
+            {selectedPlace ? 'Update Place' : 'Create Place'}
+          </button>
  
 </div>
         </form>
+        </Modal.Body>
+      </Modal>
 
       </div>
 
 
-
+      </div>
 
 
 
@@ -1181,7 +1199,7 @@ const handleDeleteType = async (_id) => {
           </li>
         ))}
       </ul>
-    </div>
+   
 
 
 
@@ -1189,6 +1207,8 @@ const handleDeleteType = async (_id) => {
 
 
     </div>
+    <Footer />
+    </>
   );
 };
 

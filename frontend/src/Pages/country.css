@@ -683,6 +683,6 @@ flex-wrap: wrap;
 
 @media (max-width: 375px){
 .test {
-    left: -36%;
+    left: -40%;
 }
 }

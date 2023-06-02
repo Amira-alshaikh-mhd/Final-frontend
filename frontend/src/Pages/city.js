@@ -52,6 +52,10 @@ const City = () => {
 
 
 
+
+
+
+  
   
 
   const fetchTypes = async () => {
@@ -148,7 +152,6 @@ useEffect(() => {
 
   const [hosts, setHosts] = useState([]);
 
-  // const { cityName } = useParams();
 
 
 
@@ -156,13 +159,7 @@ useEffect(() => {
     const fetchHosts = async (cityId) => {
       try {
         console.log(cityId)
-        // const res = await axios.get(
-        //   `https://trip-trail.onrender.com/city/${cityId.cityId}`
-        // );
-        // // console.log(res.data, "im ress");
-        // setCity(res.data)
-        // const name = res.data.name;
-        // console.log(name);
+    
         const response = await axios.get(
           `https://trip-trail.onrender.com/host/getbyCity/${cityId.cityId}`
         );

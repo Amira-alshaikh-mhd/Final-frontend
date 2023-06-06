@@ -226,7 +226,7 @@ useEffect(() => {
             <img src={city.image? city.image.url : null} alt={city.name} className='city-img' />
 
 <h3 className='city-title'>{city.name}</h3>
-<h3 className='city-des'>{city.Describtion}</h3>
+<h3 className='city-des'>{city.Description}</h3>
 <hr />
 
 

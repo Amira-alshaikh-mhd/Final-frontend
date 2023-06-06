@@ -88,7 +88,7 @@ const BookingComponent = () => {
     try {
       const response = await axios.post('https://trip-trail.onrender.com/book', bookingData);
       setError(response.data.message);
-      toast.success("Booking successful");
+      // toast.success("Booking successful");
       fetchBooks();
     } catch (error) {
       console.log(error);
@@ -106,7 +106,7 @@ const BookingComponent = () => {
 
   return (
     <>
-      <ToastContainer />
+      {/* <ToastContainer /> */}
       <div className="bookingFormContainer">
         <h1 className="bookingFormTitle">Booking Form</h1>
         <form className="bookingForm" onSubmit={handleSubmit}>
